@@ -1,4 +1,2 @@
-bin
-include
-lib
-local
+db
+env
