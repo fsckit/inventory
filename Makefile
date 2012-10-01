@@ -1,19 +1,23 @@
 MANAGE=manage.py
-init:
+VENV=. env/bin/activate;
+
+venv: env/bin/activate
+env/bin/activate: requirements.txt
 	[ -d env ] || virtualenv env
-	. env/bin/activate
-	pip install -r requirements.txt
-	python ${MANAGE} syncdb
-	echo "Type . env/bin/activate to enter virutal environment"
+	${VENV} pip install -r requirements.txt
+	touch env/bin/activate
 
-update:
-	pip install -U -r requirements.txt
+init: venv
+	${VENV} echo "no" | python ${MANAGE} syncdb
 
-freeze:
-	pip freeze -r requirements.txt > requirements.txt
+update: venv
+	${VENV} pip install -U -r requirements.txt
 
-serve:
-	python ${MANAGE} runserver
+freeze: venv
+	${VENV} pip freeze -r requirements.txt > requirements.txt
 
-test:
-	python ${MANAGE} test
+serve: venv
+	${VENV} python ${MANAGE} runserver
+
+test: venv
+	${VENV} python ${MANAGE} test
