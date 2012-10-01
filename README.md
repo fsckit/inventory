@@ -16,19 +16,19 @@ Doug Patti
 
 ##Setup for Development
 
-1. Make sure you have the above requirements.
-2. Start my checking out the source from Github in the folder of your choice.
+Make sure you have the above requirements. Start my checking out the source
+from Github in the folder of your choice.
 
     $ git clone https://github.com/fsckit/inventory
 
-3. Enter the directory and run the initialization. This will install the
-   required packages via pip.
+Enter the directory and run the initialization. This will install the required
+packages via pip.
 
     $ cd inventory
     $ make init
 
-4. Try running the server.
+Try running the server.
 
     $ make serve
 
-5. Visit <http://localhost:8000/> to see if it works.
+Visit <http://localhost:8000/> to see if it works.
