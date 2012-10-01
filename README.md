@@ -33,6 +33,22 @@ Try running the server.
 
 Visit <http://localhost:8000/> to see if it works.
 
+##Style Conventions
+
+* Use spaces, never tabs
+* 2 space indentation
+* Classes should be written with capital CamelCase
+* Constants should be ALL\_CAPS\_WITH\_UNDERSCORES
+* Methods, variables, and decorators should be written
+  lowercase\_with\_underscores
+* No lines of code over 100 characters in width
+* No comments over 80 characters in width
+* Use "double quotes" for strings that will be printed out or contain
+  interpolation
+* Use 'single quotes' for symbol-like strings, such as dictionary keys
+* Line endings should be Unix style (LF) and not Windows style (CRLF)
+* File should end with a newline
+
 ##License
 
 The MIT License
