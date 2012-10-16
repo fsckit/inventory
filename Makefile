@@ -10,6 +10,8 @@ env/bin/activate: requirements.txt
 init: venv
 	${VENV} echo "no" | python ${MANAGE} syncdb
 
+syncdb: init
+
 update: venv
 	${VENV} pip install -U -r requirements.txt
 
