@@ -1,3 +1,7 @@
 from django.db import models
 
-# Create your models here.
+class Item(models.model):
+  name         = models.CharField(max_length = 100)
+  label_id     = models.IntegerField()
+  type         = models.CharField(max_length = 20)  
+  
