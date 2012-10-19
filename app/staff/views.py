@@ -1,19 +1,19 @@
 from app.decorators.json_response import *
-
+from django.contrib.auth import authenticate, login
 # All views still stubs.
 
 @json_response
-def create(request):
+def login(request):
 	return { 'route': request.path }
 
 @json_response
-def read(request, id = -1):
+def logout(request, id=-1):
 	return { 'route': request.path }
 
 @json_response
-def update(request, id = -1):
+def changepwd(request, id=-1):
 	return { 'route': request.path }
 
 @json_response
-def delete(request, id = -1):
+def userinfo(request, id=-1):
 	return { 'route': request.path }
