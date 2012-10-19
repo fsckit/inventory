@@ -1,8 +1,8 @@
-from django.core import serializers
+import json
+from django.http import HttpResponse
 
 def json_response(fn):
   def wrapped(*args, **kwargs):
-    response = fn(*args, **kwargs)
-    json = serializers.serialize('json', data)
-    return HttpResponse(json, mimetype='application/json')
-  return fn
+    response = json.dumps(fn(*args, **kwargs))
+    return HttpResponse(response, mimetype='application/json')
+  return wrapped
