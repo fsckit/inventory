@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+
+{% block content %}
+  {% if user.is_authorized %}
+    User logged in
+  {% else %}
+    Log in below
+  {% endif %}
+{% endblock %}
