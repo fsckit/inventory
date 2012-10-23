@@ -1,4 +1,5 @@
 # Django settings for inventory project production
+import os
 import dj_database_url
 from app.settings.base import *
 
@@ -13,11 +14,11 @@ MANAGERS = ADMINS
 
 DATABASES = { 'default': dj_database_url.config() }
 
-# A sample logging configuration. The only tangible logging
-# performed by this configuration is to send an email to
-# the site admins on every HTTP 500 error when DEBUG=False.
-# See http://docs.djangoproject.com/en/dev/topics/logging for
-# more details on how to customize your logging configuration.
+MEDIA_URL = ''
+STATIC_URL = '/static'
+
+SECRET_KEY = os.getenv('DJANGO_SECRET_KEY')
+
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
