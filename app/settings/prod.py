@@ -1,4 +1,5 @@
 # Django settings for inventory project production
+import dj_database_url
 from app.settings.base import *
 
 DEBUG = False
@@ -10,16 +11,7 @@ ADMINS = (
 )
 MANAGERS = ADMINS
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'inventory',
-        'USER': 'inventory',
-        'PASSWORD': 'password',
-        'HOST': '', # localhost
-        'PORT': '', # default
-    }
-}
+DATABASES = { 'default': dj_database_url.config() }
 
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to
