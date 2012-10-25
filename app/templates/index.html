@@ -1,8 +1,8 @@
 {% extends "base.html" %}
 
 {% block content %}
-  {% if user.is_authorized %}
-    User logged in
+  {% if not user.is_authorized %}
+    {% include "stage.html" %}
   {% else %}
     Log in below
   {% endif %}
