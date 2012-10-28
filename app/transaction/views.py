@@ -1,4 +1,4 @@
-from app.decorators.json_response import *
+from app.decorators import json_response
 
 @json_response
 def create(request):

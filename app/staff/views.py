@@ -1,19 +1,22 @@
-from app.decorators.json_response import *
 from django.contrib.auth import authenticate, login
-# All views still stubs.
+from django.shortcuts import render_to_response
+from django.template import RequestContext
+from app.decorators import json_response, staff_only
+from app.staff.forms import CreateForm
+
 
 @json_response
-def login(request):
+def read(request, id = -1):
 	return { 'route': request.path }
 
-@json_response
-def logout(request, id=-1):
-	return { 'route': request.path }
+# @staff_only
+def create(request):
+  if request.method == 'POST':
+    form = CreateForm(request.POST, request.FILES)
+    if form.is_valid():
+      form.save()
+      return HttpResponseRedirect(reverse('staff_create'))
+  else:
+    form = CreateForm()
 
-@json_response
-def changepwd(request, id=-1):
-	return { 'route': request.path }
-
-@json_response
-def userinfo(request, id=-1):
-	return { 'route': request.path }
+  return render_to_response('staff/create.html', {'form': form}, context_instance=RequestContext(request))
