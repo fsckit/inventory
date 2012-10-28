@@ -1,9 +1,5 @@
 {% extends "base.html" %}
 
 {% block content %}
-  {% if not user.is_authorized %}
-    {% include "stage.html" %}
-  {% else %}
-    Log in below
-  {% endif %}
+{% include "stage.html" %}
 {% endblock %}

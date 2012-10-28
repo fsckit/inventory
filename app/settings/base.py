@@ -78,3 +78,5 @@ INSTALLED_APPS = (
 
 # Python dotted path to the WSGI application used by Django's runserver.
 WSGI_APPLICATION = 'scripts.wsgi.application'
+
+LOGIN_REDIRECT_URL = '/'
