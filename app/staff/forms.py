@@ -6,5 +6,7 @@ class CreateForm(forms.ModelForm):
   class Meta:
     model = User
     fields = ('first_name', 'last_name', 'email', 'password', 'is_superuser')
-    widgets = {'password': forms.widgets.PasswordInput}
-
+    widgets = {
+        'email':    forms.widgets.TextInput(attrs={'autocomplete':'off'}),
+        'password': forms.widgets.PasswordInput(attrs={'autocomplete':'off'}),
+    }
