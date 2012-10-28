@@ -18,7 +18,7 @@ DATABASES = {
 
 
 MEDIA_URL = ''
-STATIC_URL = '/static'
+STATIC_URL = '/static/'
 
 # Make this unique, and don't share it with anybody.
 SECRET_KEY = '4ktv5%y20q)-6law0pfuu14ukke9un-5f4c(5waqkac3j5x9wt'

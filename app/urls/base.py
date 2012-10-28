@@ -1,5 +1,10 @@
 from django.conf.urls import patterns, include, url
 from django.conf import settings
+from django.contrib import admin
+
+# Uncomment the next two lines to enable the admin:
+from django.contrib import admin
+admin.autodiscover()
 
 urlpatterns = patterns('',
   url(r'^$', 'app.views.index', name='home'),
@@ -9,7 +14,7 @@ urlpatterns = patterns('',
   (r'^transaction/', include('app.transaction.urls')),
 
   # Uncomment the next line to enable the admin:
-  # (r'^admin/', include(admin.site.urls)),
+  (r'^admin/',       include(admin.site.urls)),
 )
 
 urlpatterns += patterns('',
