@@ -23,3 +23,6 @@ serve: venv
 
 test: venv
 	${VENV} python ${MANAGE} test
+
+shell: venv
+	${VENV} python ${MANAGE} shell
