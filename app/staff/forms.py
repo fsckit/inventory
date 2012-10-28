@@ -1,6 +1,4 @@
-from django import forms
-from app.staff.models import Staff
+from django.contrib.auth.forms import UserCreationForm
 
-class CreateForm(forms.ModelForm):
-  class Meta:
-    model = Staff
+class CreateForm(UserCreationForm):
+  pass
