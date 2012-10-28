@@ -1,5 +1,20 @@
 {% extends "base.html" %}
 
 {% block content %}
-  {% include "_form.html" %}
+<form class="form-horizontal" action="{% url staff_create %}" enctype="multipart/form-data" method="post">
+  <fieldset>
+    <legend>Create Staff Account</legend>
+
+    <p>Enter the basic details about the user account you would like to create.
+    He or she will receive an email containing details and information on how to
+    set their password.</p>
+
+    {% include "_form.html" %}
+    {% csrf_token %}
+    <div class="form-actions">
+      <input class="btn btn-primary" type="submit" value="Create" />
+    </div>
+  </fieldset>
+</form>
+
 {% endblock content %}
