@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<form class="form-horizontal" action="{% url customer_update cid %}" method="post">
+    {% csrf_token %}
+    <fieldset>
+      <legend>Lend Item</legend>
+      {% include "_form.html" %}
+      <div class="form-actions">
+        <input class="btn" type="submit">
+      </div>
+    </fieldset>
+  </form>
+{% endblock content %}
