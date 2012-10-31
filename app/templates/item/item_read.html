@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block content %}
+{% csrf_token %}
+  <legend>Item Info</legend> 
+    <div class="container-fluid">
+      {{item.name}}<br>
+      {{item.label_id}}<br>
+      {{item.type}}<br>
+    </div>
+    
+{% endblock %}
