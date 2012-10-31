@@ -10,5 +10,3 @@ class AdminForm(forms.ModelForm):
 class ProfileAdmin(admin.ModelAdmin):
     list_display = ('user','first_name','last_name')
     form = AdminForm
-
-admin.site.register(Profile, ProfileAdmin)
