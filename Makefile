@@ -26,3 +26,6 @@ test: venv
 
 shell: venv
 	${VENV} python ${MANAGE} shell
+
+admin: venv
+	${VENV} python ${MANAGE} createsuperuser
