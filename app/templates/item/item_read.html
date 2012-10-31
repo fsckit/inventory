@@ -4,9 +4,13 @@
 {% csrf_token %}
   <legend>Item Info</legend> 
     <div class="container-fluid">
-      {{item.name}}<br>
-      {{item.label_id}}<br>
-      {{item.type}}<br>
+      Item name: {{item.name}}<br>
+      Item label: {{item.label_id}}<br>
+      Item owner: {{item.owner_name}}<br>
+      Item type: {{item.type}}<br>
+      {% if item.owning_customer != None %}
+      Current customer: {{item.owning_customer.full_name}}<br>
+      {% endif %}
     </div>
     
 {% endblock %}
