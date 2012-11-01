@@ -7,7 +7,7 @@ class AdminForm(forms.ModelForm):
         model = Item
 
 class ItemAdmin(admin.ModelAdmin):
-    list_display = ('name','label_id','owning_customer','type')
+    list_display = ('name','label_id','owner','type')
     form = AdminForm
 
 admin.site.register(Item, ItemAdmin)

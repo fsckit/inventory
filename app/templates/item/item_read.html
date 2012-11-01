@@ -1,16 +1,12 @@
 {% extends "base.html" %}
 
 {% block content %}
-{% csrf_token %}
   <legend>Item Info</legend> 
     <div class="container-fluid">
       Item name: {{item.name}}<br>
       Item label: {{item.label_id}}<br>
-      Item owner: {{item.owner_name}}<br>
+      Item owner: {{item.owner}}<br>
       Item type: {{item.type}}<br>
-      {% if item.owning_customer != None %}
-      Current customer: {{item.owning_customer.full_name}}<br>
-      {% endif %}
     </div>
 
     <a href="/item/{{item.label_id}}/update">Edit item</a>
