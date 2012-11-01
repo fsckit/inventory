@@ -22,13 +22,13 @@ def read(request, id=-1):
   return render_to_response('customer/customer_read.html', {'customer': customer}, context_instance=RequestContext(request))
 
 def update(request, id=-1):
+  customer = Customer.objects.get(student_id=id)
   if request.method == 'POST':
-    form = CreateForm(request.POST, request.FILES)
+    form = CreateForm(request.POST, request.FILES, instance=customer)
     if form.is_valid():
       obj = form.save()
       return HttpResponseRedirect(reverse('customer_read', args=[obj.student_id]))
   else:
-    customer = Customer.objects.get(student_id=id)
     form = CreateForm(instance=customer)
   return render_to_response('customer/customer_update.html', {'form': form}, context_instance=RequestContext(request))
 
