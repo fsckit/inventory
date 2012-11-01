@@ -15,7 +15,7 @@ MANAGERS = ADMINS
 DATABASES = { 'default': dj_database_url.config() }
 
 MEDIA_URL = ''
-STATIC_URL = '/static'
+STATIC_URL = '/static/'
 
 SECRET_KEY = os.getenv('DJANGO_SECRET_KEY')
 
