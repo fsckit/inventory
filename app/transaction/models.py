@@ -1,11 +1,16 @@
 from django.db import models
+from app.customer.models import Customer
+from app.item.models import Item
 
 class Transaction(models.Model):
   ACTIONS = (
-    (u'b',	u'borrow'),
-	(u'l',	u'lend'),
-	(u'r',	u'return'),
-	(u'c',	u'claim'),
+    (u'b',	u'borrow'), # Lend from the con to customer
+    (u'l',	u'lend'), # Lend from item.owning_customer to the con
+    (u'r',	u'return'), # Return from customer to the con
+    (u'c',	u'claim'), # Return from the con to item.owning_customer
   )
+
   date      = models.DateTimeField(auto_now=True)
   action    = models.CharField(max_length=2, choices=ACTIONS)
+  customer = models.ForeignKey(Customer, on_delete=models.PROTECT)
+  item = models.ForeignKey(Item, on_delete=models.PROTECT)
