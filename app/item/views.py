@@ -38,7 +38,8 @@ def update(request, id = -1):
       form.save()
       return HttpResponseRedirect(reverse('item_read'))
   else:
-    form = ItemCreate()
+     item = Item.objects.get(label_id=id)
+     form = ItemCreate(instance=item)
   return render_to_response('item/item_update.html', {'form': form}, context_instance=RequestContext(request))
 
 def delete(request, id = -1):

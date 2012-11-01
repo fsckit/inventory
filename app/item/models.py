@@ -3,7 +3,7 @@ from app.customer.models import Customer
 
 class Item(models.Model):
   name         = models.CharField(max_length = 100)
-  label_id     = models.IntegerField()
+  label_id     = models.IntegerField(unique=True)
 
   # Person who is currently holding the object in question
   owning_customer = models.ForeignKey(Customer, on_delete=models.PROTECT, null=True, blank=True)
@@ -12,3 +12,5 @@ class Item(models.Model):
   owner_name = models.CharField(max_length=100)
   type = models.CharField(max_length = 20)  
   
+  def __str__(self):
+    return str(self.full_name)
