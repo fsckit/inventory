@@ -7,6 +7,11 @@ from app.customer.forms import TakeItemForm
 from app.customer.forms import CreateForm
 from app.customer.models import Customer
 
+
+def index(request):
+  customer = [(customer.full_name, customer.student_id) for customer in Customer.objects.all()]
+  return render_to_response('customer/customer_index.html', {'customer': customer}, context_instance=RequestContext(request))
+
 def create(request):
   if request.method == 'POST':
     form = CreateForm(request.POST, request.FILES)
