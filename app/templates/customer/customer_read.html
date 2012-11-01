@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block content %}
+{% csrf_token %}
+  <legend>Customer Info</legend> 
+    <div class="container-fluid">
+      {{customer.full_name}}<br>
+      {{customer.student_id}}<br>
+      {{customer.email}}<br>
+      {{customer.phone_number}}<br>
+    </div>
+    
+{% endblock %}
