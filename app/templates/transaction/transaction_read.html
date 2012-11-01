@@ -1,0 +1,8 @@
+{% extends "base.html" %}
+
+{% block content %}
+  Date: {{o.date}} <br>
+  Action: {{o.action}} <br>
+  Customer: {{o.customer.full_name}} <br>
+  Item: {{o.item.name}} <br>
+{% endblock %}
