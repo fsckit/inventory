@@ -3,7 +3,7 @@
 {% block content %}
 <h2>Customers</h2>
 <ul>
-  {% for name, id in customers %}
+  {% for name, id in customer %}
     <li><a href="/customer/{{id}}">{{name}}</a></li>
   {% endfor %}
 </ul>
