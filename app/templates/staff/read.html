@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <legend>Staff Info</legend> 
+    <div class="container-fluid">
+      Staff name: {{user.first_name}} {{user.last_name}}<br>
+      Staff email: {{user.email}}<br>
+    </div>
+{% endblock %}
+

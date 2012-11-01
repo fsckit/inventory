@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block content %}
+<form class="form-horizontal" enctype="multipart/form-data" method="post">
+  <fieldset>
+    <legend>Edit Account</legend>
+    {% include "_form.html" %}
+    {% csrf_token %}
+    <div class="form-actions">
+      <input class="btn btn-primary" type="submit" value="Update" />
+    </div>
+  </fieldset>
+</form>
+
+{% endblock content %}
