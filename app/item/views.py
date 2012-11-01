@@ -7,6 +7,10 @@ from django.http import HttpResponseRedirect
 from django.http import HttpResponse
 from django.core.urlresolvers import reverse
 
+def index(request):
+  items = [(item.name, item.pk) for item in Item.objects.all()]
+  return render_to_response('item/item_index.html', {'items': items}, context_instance=RequestContext(request))
+
 def create(request):
   if request.method == 'POST':
     form = ItemCreate(request.POST, request.FILES)
