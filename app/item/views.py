@@ -23,9 +23,8 @@ def create(request):
 
 # Show an individual item's details.
 def read(request, id = -1):
-  item = Item.objects.filter(label_id=id)
-  # TODO: Show an error if the item isn't found (I'm lazy)
-  return render_to_response('item/item_read.html', {'item': item[0]}, context_instance=RequestContext(request))
+  item = Item.objects.get(label_id=id)
+  return render_to_response('item/item_read.html', {'item': item}, context_instance=RequestContext(request))
 
 # List of items (stub)
 def list_items(request):

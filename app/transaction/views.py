@@ -19,8 +19,8 @@ def create(request):
     return render_to_response('transaction/transaction_create.html', {'form': form}, context_instance=RequestContext(request))
 
 def read(request, id = -1):
-  qs = Transaction.objects.filter(pk=id)
-  return render_to_response('transaction/transaction_read.html', {'o': qs[0]}, context_instance=RequestContext(request))
+  qs = Transaction.objects.get(pk=id)
+  return render_to_response('transaction/transaction_read.html', {'o': qs}, context_instance=RequestContext(request))
 
 @json_response
 def update(request, id = -1):
