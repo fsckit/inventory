@@ -9,7 +9,7 @@ from django.core.urlresolvers import reverse
 
 def index(request):
   items = [(item.name, item.label_id) for item in Item.objects.all()]
-  return render_to_response('item/item_index.html', {'items': items}, context_instance=RequestContext(request))
+  return render_to_response('item/index.html', {'items': items}, context_instance=RequestContext(request))
 
 def create(request):
   if request.method == 'POST':
@@ -19,16 +19,16 @@ def create(request):
       return HttpResponseRedirect('/')
   else:
     form = ItemCreate()
-  return render_to_response('item/item_create.html', {'form': form}, context_instance=RequestContext(request))
+  return render_to_response('item/create.html', {'form': form}, context_instance=RequestContext(request))
 
 # Show an individual item's details.
 def read(request, id = -1):
   item = Item.objects.get(label_id=id)
-  return render_to_response('item/item_read.html', {'item': item}, context_instance=RequestContext(request))
+  return render_to_response('item/read.html', {'item': item}, context_instance=RequestContext(request))
 
 # List of items (stub)
 def list_items(request):
-  return render_to_response('item/item_read.html', context_instance=RequestContext(request))
+  return render_to_response('item/read.html', context_instance=RequestContext(request))
 
 def update(request, id = -1):
   item = Item.objects.get(label_id=id)
@@ -39,7 +39,7 @@ def update(request, id = -1):
       return HttpResponseRedirect(reverse('item_read', args=[item.label_id]))
   else:
      form = ItemCreate(instance=item)
-  return render_to_response('item/item_update.html', {'form': form}, context_instance=RequestContext(request))
+  return render_to_response('item/update.html', {'form': form}, context_instance=RequestContext(request))
 
 def delete(request, id = -1):
-  return render_to_response('item/item_delete.html', context_instance=RequestContext(request))
+  return render_to_response('item/delete.html', context_instance=RequestContext(request))

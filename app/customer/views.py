@@ -9,7 +9,7 @@ from app.customer.models import Customer
 
 def index(request):
   customer = [(customer.full_name, customer.student_id) for customer in Customer.objects.all()]
-  return render_to_response('customer/customer_index.html', {'customer': customer}, context_instance=RequestContext(request))
+  return render_to_response('customer/index.html', {'customer': customer}, context_instance=RequestContext(request))
 
 def create(request):
   if request.method == 'POST':
@@ -19,11 +19,11 @@ def create(request):
       return HttpResponseRedirect(reverse('customer_read', args=[obj.student_id]))
   else:
     form = CreateForm()
-  return render_to_response('customer/customer_create.html', {'form': form}, context_instance=RequestContext(request))
+  return render_to_response('customer/create.html', {'form': form}, context_instance=RequestContext(request))
 
 def read(request, id=-1):
   customer = Customer.objects.get(student_id=id)
-  return render_to_response('customer/customer_read.html', {'customer': customer}, context_instance=RequestContext(request))
+  return render_to_response('customer/read.html', {'customer': customer}, context_instance=RequestContext(request))
 
 def update(request, id=-1):
   customer = Customer.objects.get(student_id=id)
@@ -34,7 +34,7 @@ def update(request, id=-1):
       return HttpResponseRedirect(reverse('customer_read', args=[obj.student_id]))
   else:
     form = CreateForm(instance=customer)
-  return render_to_response('customer/customer_update.html', {'form': form}, context_instance=RequestContext(request))
+  return render_to_response('customer/update.html', {'form': form}, context_instance=RequestContext(request))
 
 
 @json_response
