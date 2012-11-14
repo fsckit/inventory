@@ -4,14 +4,15 @@ from django.core.urlresolvers import reverse
 from django.http import HttpResponseRedirect
 from django.shortcuts import render_to_response
 from django.template import RequestContext
-from app.decorators import json_response, staff_only
+from app.decorators import json_response, staff_only, superuser_only
 from app.staff.forms import CreateForm
 
+@staff_only
 def read(request, id=-1):
   user = User.objects.get(pk=id)
   return render_to_response('staff/read.html', {'user': user}, context_instance=RequestContext(request))
 
-# @staff_only
+@superuser_only
 def create(request):
   if request.method == 'POST':
     form = CreateForm(request.POST, request.FILES)
