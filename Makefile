@@ -8,7 +8,7 @@ env/bin/activate: requirements.txt
 	touch env/bin/activate
 
 init: venv
-	${VENV} echo "no" | python ${MANAGE} syncdb
+	${VENV} python ${MANAGE} syncdb --noinput
 
 syncdb: init
 
@@ -29,3 +29,6 @@ shell: venv
 
 admin: venv
 	${VENV} python ${MANAGE} createsuperuser
+
+resetdb: venv
+	${VENV} python ${MANAGE} reset --noinput `python -c "from app.settings import base; print ' '.join(map(lambda x: x[4:], filter(lambda x: 'app.' in x, base.INSTALLED_APPS)))"`
