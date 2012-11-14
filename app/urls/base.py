@@ -12,6 +12,7 @@ urlpatterns = patterns('',
   (r'^customer/',    include('app.customer.urls')),
   (r'^item/',        include('app.item.urls')),
   (r'^transaction/', include('app.transaction.urls')),
+  (r'^search/',      include('app.search.urls')),
 
   # Uncomment the next line to enable the admin:
   (r'^admin/',       include(admin.site.urls)),

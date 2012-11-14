@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Items</h2>
+<ul>
+  {% for name, label, id in items %}
+  <li><a href="/item/{{id}}">{{name}} - {{label}}</a></li>
+  {% endfor %}
+</ul>
+<h2>Customers</h2>
+<ul>
+  {% for name, email, id in customers %}
+  <li><a href="/customer/{{id}}">{{name}} - {{email}} ({{id}})</a></li>
+  {% endfor %}
+</ul>
+{% endblock %}
