@@ -2,6 +2,7 @@
   <fieldset>
     <legend>Create Transaction</legend>
     {% include "_form.html" %}
+    {% csrf_token %}
     <div class="form-actions">
       <input class="btn" type="submit">
     </div>
