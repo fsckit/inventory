@@ -4,6 +4,9 @@ urlpatterns = patterns('app.staff.views',
   url(r'^create/$', 'create', name='staff_create'),
   url(r'^(\d+)/$', 'read', name='staff_read'),
   url(r'^update/$', 'update', name='staff_update'),
+#user auth patterns
+  url(r'^email_sent/$', 'email_sent', name='activation_email_sent'),
+  url(r'^activation/(?P<activation_key>\w+)/$', 'activation', name='staff_activation'),
 )
 
 urlpatterns += patterns('django.contrib.auth.views',
