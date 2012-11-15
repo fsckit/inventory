@@ -76,6 +76,7 @@ INSTALLED_APPS = (
     'app.item',
     'app.staff',
     'app.transaction',
+    'app.search', 
     # 'django.contrib.staticfiles',
     # 'django.contrib.admindocs',
 )

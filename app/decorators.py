@@ -1,12 +1,17 @@
 import json
 from django.http import HttpResponse
 
-def json_response(fn):
-  def wrapped(*args, **kwargs):
-    response = json.dumps(fn(*args, **kwargs))
-    return HttpResponse(response, mimetype='application/json')
-  return wrapped
-
+# Accepts a method and only returns json on those types
+def json_response(method):
+  def decorator(fn):
+    def wrapped(request, *args, **kwargs):
+      if request.method == method:
+        response = json.dumps(fn(request, *args, **kwargs))
+        return HttpResponse(response, mimetype='application/json')
+      else:
+        return  fn(request, *args, **kwargs)
+    return wrapped
+  return decorator
 
 
 

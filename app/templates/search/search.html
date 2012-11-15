@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block content %}
+<form class="form-horizontal" action="{% url search_search %}" method="post">
+    {% csrf_token %}
+    <fieldset>
+      <legend>Search</legend>
+      {% include "_form.html" %}
+      <div class="form-actions">
+        <input class="btn" type="submit" value="Search">
+      </div>
+    </fieldset>
+  </form>
+{% endblock %}
