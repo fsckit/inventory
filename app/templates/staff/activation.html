@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block content %}
+<form class="form-horizontal" action="{% url staff_activation activation_key=activation_key %}" enctype="multipart/form-data" method="post">
+  <fieldset>
+    <legend>Staff Account Activation</legend>
+
+    <p>Enter the basic details about the user account you would like to create.</p>
+
+    {% include "_form.html" %}
+    {% csrf_token %}
+    <div class="form-actions">
+      <input class="btn btn-primary" type="submit" value="Activation" />
+    </div>
+  </fieldset>
+</form>
+
+{% endblock content %}
