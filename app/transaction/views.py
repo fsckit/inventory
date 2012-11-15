@@ -14,6 +14,7 @@ def create(request):
 
     if form.is_valid():
       # TODO: Verify current state
+      form.instance.signoff = request.user
       form.save()
       return { 'success': True }
     return { 'success': False }
