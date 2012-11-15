@@ -1,16 +1,37 @@
+{% extends "base.html" %}
+
+{% block content %}
+
 <div class="row-fluid">
   <div class="span10">
     <div class="row-fluid">
       <div class="span5">
         <h2>Customer</h2>
-      </div>
+        <input type="button" class="toggle" value="Hide"  />
+        <div class="toggle" >
+	      {% with customer_form as form %}
+          {% include "customer/create.html" %}
+          {% endwith %}
+        </div>
       <div class="span5">
         <h2>Item</h2>
+        <input type="button" class="toggle" value="Hide"  />
+        <div class="toggle" >
+	      {% with item_form as form %}
+          {% include "item/create.html" %}
+          {% endwith %}
+        </div>
       </div>
     </div>
     <div class="row-fluid">
       <div class="span10">
         <h2>Transaction</h2>
+        <input type="button" class="toggle" value="Hide"  />
+        <div class="toggle" >
+	      {% with trans_form as form %}
+          {% include "transaction/create.html" %}
+          {% endwith %}
+        </div>
       </div>
     </div>
   </div>
@@ -18,3 +39,4 @@
     <h2>History</h2>
   </div>
 </div>
+{% endblock %}
