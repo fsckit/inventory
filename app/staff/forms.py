@@ -8,7 +8,7 @@ class CreateForm(forms.ModelForm):
     fields = ('first_name', 'last_name', 'email', 'is_superuser',)
     widgets = {
         'email':    forms.widgets.TextInput(attrs={'autocomplete':'off'})
-}
+    }
 
 class ActivationForm(forms.ModelForm):
   class Meta:
@@ -17,4 +17,10 @@ class ActivationForm(forms.ModelForm):
     widgets = {
         'password':	forms.widgets.PasswordInput()
         #'password_confirmation': forms.widgets.TextInput(attrs={'autocomplete':'off'}),
-}
+    }
+
+class UpdateForm(forms.ModelForm):
+  password = forms.CharField(widget=forms.PasswordInput, label="New Password", required=False)
+  class Meta:
+    model = User
+    fields = ('first_name', 'last_name', 'email')

@@ -5,13 +5,12 @@ from django.http import HttpResponseRedirect, Http404
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 from app.decorators import json_response, staff_only, superuser_only
-from app.staff.forms import CreateForm
+from app.staff.forms import CreateForm, UpdateForm
 from app.staff.forms import ActivationForm
 from django.core.mail import send_mail
 from django.utils.hashcompat import sha_constructor
 from random import randint as rng
 from django.core.exceptions import ObjectDoesNotExist
-
 
 @staff_only
 def read(request, id=-1):
@@ -86,11 +85,14 @@ def email_sent(request):
 def update(request):
   # Update defaults to self (request.user)
   if request.method == 'POST':
-    form = CreateForm(request.POST, request.FILES, instance=request.user)
+    form = UpdateForm(request.POST, request.FILES, instance=request.user)
     if form.is_valid():
-      form.save()
+      form.save(commit=False)
+      if len(form.cleaned_data['password']) > 0:
+        request.user.set_password(form.cleaned_data['password'])
+      request.user.save()
       return HttpResponseRedirect(reverse('home'))
   else:
-    form = CreateForm(instance=request.user)
+    form = UpdateForm(instance=request.user)
 
   return render_to_response('staff/update.html', {'form': form}, context_instance=RequestContext(request))
