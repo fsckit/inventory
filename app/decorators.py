@@ -21,4 +21,4 @@ staff_only = user_passes_test(lambda user:
     user.is_authenticated() and user.is_staff, login_url='/staff/login')
 
 superuser_only = user_passes_test(lambda user:
-    user.is_authenticated() and user.is_admin, login_url='/staff/login')
+    user.is_authenticated() and user.is_superuser, login_url='/staff/login')
