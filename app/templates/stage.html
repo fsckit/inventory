@@ -1,84 +1,83 @@
 {% extends "base.html" %}
 
+
 {% block content %}
 
-<h2>Customer</h2>
-  <div class="tabbable">
+<div class="row-fluid">
+ 
+ <div class="span2">
+    <h2>History</h2>
+  </div>
 
-    <ul class="nav nav-tabs">
-      <li class="active">
-        <a href="#tab1" data-toggle="tab">Create</a></li>
-      <li>
-        <a href="#tab2" data-toggle="tab">View</a></li>
-    </ul>
-    <div class="tab-content">
-      <div class="tab-pane active" id="tab1">
-   
+  <div class="span10">
+    <div class="row-fluid">
 
-	    {% with customer_form as form %}
-
-        {% include "customer/create.html" %}
-
-        {% endwith %}
-
+	<div class="span6">
+        <h2>Customer</h2>
+        <div class="tabbable">
+          <ul class="nav nav-tabs">
+            <li class="active">
+              <a href="#tab1" data-toggle="tab">Create</a></li>
+            <li>
+              <a href="#tab2" data-toggle="tab">View</a></li>
+          </ul>
+          <div class="tab-content">
+            <div class="tab-pane active" id="tab1"> 
+              {% with customer_form as form %}
+              {% include "customer/create.html" %}
+              {% endwith %}
+            </div>
+            <div class="tab-pane" id="tab2">
+              {% with customer_view as customer %}
+              {% include "customer/index.html" %}
+              {% endwith %}
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="tab-pane" id="tab2">
 
-        {% include "customer/index.html" %}
-
+      <div class="span6">
+        <h2>Item</h2>
+        <div class="tabbable">
+          <ul class="nav nav-tabs">
+            <li class="active">
+              <a href="#tab3" data-toggle="tab">Create</a></li>
+            <li>
+              <a href="#tab4" data-toggle="tab">View</a></li>
+          </ul>
+          <div class="tab-content">
+            <div class="tab-pane active" id="tab3">
+              {% with item_form as form %}
+              {% include "item/create.html" %}
+              {% endwith %}
+            </div>
+            <div class="tab-pane" id="tab4">
+              {% with item_view as items %}
+              {% include "item/index.html" %}
+              {% endwith %}
+            </div>
+          </div>
+        </div>
       </div>
     </div>
-    
 
-
-<h2>Item</h2>
-
-  <div class="tabbable">
-
-    <ul class="nav nav-tabs">
-      <li class="active">
-        <a href="#tab3" data-toggle="tab">Create</a></li>
-      <li>
-        <a href="#tab4" data-toggle="tab">View</a></li>
-    </ul>
-    <div class="tab-content">
-      <div class="tab-pane active" id="tab3">
-
-        {% with item_form as form %}
-
-        {% include "item/create.html" %}
-
-        {% endwith %}
-
-      </div>
-      <div class="tab-pane" id="tab4">
-
-        {% include "item/index.html" %}
-
+    <div class="row-fluid">
+      <div class="span6">
+        <h2>Transaction</h2>
+        <div class="tabbable">
+        <ul class="nav nav-tabs">
+          <li class="active">
+            <a href="#tab5" data-toggle="tab">New</a></li>
+        </ul>
+        <div class="tab-content">
+          <div class="tab-pane active" id="tab5">
+            {% with trans_form as form %}
+            {% include "transaction/create.html" %}
+            {% endwith %}
+          </div>
+        </div>
       </div>
     </div>
   </div>
-
-  
-
-<h2>Transaction</h2>
-
-  <div class="tabbable">
-
-    <ul class="nav nav-tabs">
-      <li class="active">
-        <a href="#tab5" data-toggle="tab">New</a></li>
-    </ul>
-    <div class="tab-content">
-      <div class="tab-pane active" id="tab5">
-        {% with trans_form as form %}
-
-        {% include "transaction/create.html" %}
-
-        {% endwith %}
-
-      </div>
-    </div>
- </div>
-
- {% endblock %}
+</div>
+{% endblock %}

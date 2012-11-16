@@ -5,6 +5,10 @@ from app.decorators import staff_only
 from app.item.forms import ItemCreate
 from app.customer.forms import CreateForm
 from app.transaction.forms import TransactionForm
+from app.customer.models import Customer
+from app.item.forms import Item
+
+
 
 def index(request):
   # Do a test here to see if we should display a login page or the stage
@@ -12,7 +16,9 @@ def index(request):
     context = {
        "item_form":ItemCreate(),
        "customer_form":CreateForm(),
-       "trans_form":TransactionForm()
+       "trans_form":TransactionForm(),
+       "customer_view":[(customer.full_name, customer.student_id) for customer in Customer.objects.all()],
+       "item_view":[(item.name, item.label_id) for item in Item.objects.all()],
     }
     return render_to_response('stage.html', context, context_instance=RequestContext(request))
   else:
