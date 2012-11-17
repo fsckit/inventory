@@ -58,6 +58,6 @@ def update(request, id=-1):
     return render_to_response('customer/update.html', {'form': form}, context_instance=RequestContext(request))
 
 # Delete a customer -- stub; may not implement
-@json_response
+@json_response('POST')
 def delete(request, id = -1):
   return { 'route': request.path }

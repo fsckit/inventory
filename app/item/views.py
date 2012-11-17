@@ -61,6 +61,6 @@ def update(request, id = -1):
 
 # Delete a item -- stub; may not implement
 @staff_only
-@json_response
+@json_response('POST')
 def delete(request, id = -1):
   return { 'route': request.path }
