@@ -1,8 +1,0 @@
-{% block title %}Thank you for participating at RPI's Genericon.{% endblock %}
-
-{% block content %}
-<p>{{customer.full_name}},
-</p>
-<p>You have lent your {{item.name}} to the inventory.
-</p>
-{% endblock %}
