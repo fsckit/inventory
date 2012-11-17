@@ -3,7 +3,7 @@
 
 {% block content %}
 
-<div class="row-fluid">
+<div id="stage" class="row-fluid">
  
  <div class="span2">
     <h2>History</h2>
@@ -14,48 +14,40 @@
 
 	<div class="span6">
         <h2>Customer</h2>
-        <div class="tabbable">
+        <div id='customer' class="tabbable">
           <ul class="nav nav-tabs">
             <li class="active">
-              <a href="#tab1" data-toggle="tab">Create</a></li>
+              <a class="create" href="#customer-create" data-toggle="tab">Create</a></li>
             <li>
-              <a href="#tab2" data-toggle="tab">View</a></li>
+              <a class="view" href="#customer-view" data-toggle="tab">View</a></li>
           </ul>
           <div class="tab-content">
-            <div class="tab-pane active" id="tab1"> 
+            <div class="tab-pane active" id="customer-create">
               {% with customer_form as form %}
               {% include "customer/create.html" %}
               {% endwith %}
             </div>
-            <div class="tab-pane" id="tab2">
-              {% with customer_view as customer %}
-              {% include "customer/index.html" %}
-              {% endwith %}
-            </div>
+            <div class="tab-pane" id="customer-view"></div>
           </div>
         </div>
       </div>
 
       <div class="span6">
         <h2>Item</h2>
-        <div class="tabbable">
+        <div id="item" class="tabbable">
           <ul class="nav nav-tabs">
             <li class="active">
-              <a href="#tab3" data-toggle="tab">Create</a></li>
+              <a class="create" href="#item-create" data-toggle="tab">Create</a></li>
             <li>
-              <a href="#tab4" data-toggle="tab">View</a></li>
+              <a class="view" href="#item-view" data-toggle="tab">View</a></li>
           </ul>
           <div class="tab-content">
-            <div class="tab-pane active" id="tab3">
+            <div class="tab-pane active" id="item-create">
               {% with item_form as form %}
               {% include "item/create.html" %}
               {% endwith %}
             </div>
-            <div class="tab-pane" id="tab4">
-              {% with item_view as items %}
-              {% include "item/index.html" %}
-              {% endwith %}
-            </div>
+            <div class="tab-pane" id="item-view"></div>
           </div>
         </div>
       </div>
@@ -64,19 +56,11 @@
     <div class="row-fluid">
       <div class="span6">
         <h2>Transaction</h2>
-        <div class="tabbable">
-        <ul class="nav nav-tabs">
-          <li class="active">
-            <a href="#tab5" data-toggle="tab">New</a></li>
-        </ul>
-        <div class="tab-content">
           <div class="tab-pane active" id="tab5">
             {% with trans_form as form %}
             {% include "transaction/create.html" %}
             {% endwith %}
           </div>
-        </div>
-      </div>
     </div>
   </div>
 </div>

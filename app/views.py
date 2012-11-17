@@ -17,8 +17,6 @@ def index(request):
        "item_form":ItemCreate(),
        "customer_form":CreateForm(),
        "trans_form":TransactionForm(),
-       "customer_view":[(customer.full_name, customer.student_id) for customer in Customer.objects.all()],
-       "item_view":[(item.name, item.label_id) for item in Item.objects.all()],
     }
     return render_to_response('stage.html', context, context_instance=RequestContext(request))
   else:
