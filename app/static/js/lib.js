@@ -6,4 +6,8 @@
     console.error(err_string);
   };
 
+  $.success = function(message) {
+    console.log(message);
+  };
+
 })(jQuery);

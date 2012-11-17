@@ -12,6 +12,9 @@
     <div class="navbar navbar-static-top">
       <div class="navbar-inner">
         <a class="brand" href="/">Genericon Inventory Tracker</a>
+        <form class="navbar-form pull-left">
+          <input type="text" class="search" placeholder="Search">
+        </form>
         {% if user.is_authenticated %}
         <ul class="nav pull-right">
           <li class="dropdown">
