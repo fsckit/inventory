@@ -5,4 +5,7 @@ $(function(){
       $(e.target.hash).load('/' + type + '/index');
     });
   });
+
+  // Load history
+  $('#transaction-history').load('/transaction/index');
 });
