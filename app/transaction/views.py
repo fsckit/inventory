@@ -88,7 +88,7 @@ def create(request):
       form.instance.signoff = request.user
 
       # Email receipt
-      form.instance.id = guid().hex
+      form.instance.id = guid().int
       instance = form.save()
 
       # Call SendMessage in email module

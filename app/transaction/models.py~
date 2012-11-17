@@ -14,22 +14,15 @@ class Transaction(models.Model):
     (u'c',	u'Claim'),  # Return from the con to item.owner
   )
 
-<<<<<<< HEAD
+
   id        = models.CharField(max_length=32, primary_key=True)
-=======
   # Date of transaction, handled automatically
->>>>>>> f3a0399cfd4ffdcf514bc7c36b7a091342f9edee
   date      = models.DateTimeField(auto_now=True)
   # Action type as enumeration of above
   action    = models.CharField(max_length=2, choices=ACTIONS)
-<<<<<<< HEAD
-  customer  = models.ForeignKey(Customer, on_delete=models.PROTECT)
-  item      = models.ForeignKey(Item, on_delete=models.PROTECT)
-
-=======
   # Customer, related item, and the staff member that signed off (generated the
   # transaction)
   customer  = models.ForeignKey(Customer, on_delete=models.PROTECT)
   item      = models.ForeignKey(Item, on_delete=models.PROTECT)
   signoff   = models.ForeignKey(User, on_delete=models.PROTECT)
->>>>>>> f3a0399cfd4ffdcf514bc7c36b7a091342f9edee
+

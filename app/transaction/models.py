@@ -15,7 +15,7 @@ class Transaction(models.Model):
   )
 
 
-  id        = models.CharField(max_length=32, primary_key=True)
+  id        = models.CharField(max_length=128, primary_key=True)
   # Date of transaction, handled automatically
   date      = models.DateTimeField(auto_now=True)
   # Action type as enumeration of above

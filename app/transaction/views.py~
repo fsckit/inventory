@@ -7,8 +7,6 @@ from django.http import HttpResponseRedirect
 from django.core.urlresolvers import reverse
 from django.core.exceptions import ObjectDoesNotExist
 from app.transaction.models import Transaction
-
-# Brandon's Changes for email recpeits
 from app.transaction.email import SendMessage
 from uuid import uuid1 as guid
 
