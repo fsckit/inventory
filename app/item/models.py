@@ -3,11 +3,11 @@ from app.customer.models import Customer
 
 class Item(models.Model):
   TYPES = (
-    (u'g', u'game'),
-    (u'c', u'console'),
-    (u'n', u'controller'),
-    (u'p', u'peripheral'),
-    (u'o', u'other'),
+    (u'g', u'Game'),
+    (u'c', u'Console'),
+    (u'n', u'Controller'),
+    (u'p', u'Peripheral'),
+    (u'o', u'Other'),
   )
 
   # Id given to the physical item

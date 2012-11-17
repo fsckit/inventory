@@ -1,20 +1,68 @@
-<div class="row-fluid">
+{% extends "base.html" %}
+
+
+{% block content %}
+
+<div id="stage" class="row-fluid">
+ 
+ <div class="span2">
+    <h2>History</h2>
+    <div id="transaction-history"></div>
+  </div>
+
   <div class="span10">
     <div class="row-fluid">
-      <div class="span5">
+
+	<div class="span6">
         <h2>Customer</h2>
+        <div id="customer" class="tabbable">
+          <ul class="nav nav-tabs">
+            <li class="active">
+              <a class="create" href="#customer-create" data-toggle="tab">Create</a></li>
+            <li>
+              <a class="view" href="#customer-view" data-toggle="tab">View</a></li>
+          </ul>
+          <div class="tab-content">
+            <div class="tab-pane active create" id="customer-create">
+              {% with customer_form as form %}
+              {% include "customer/create.html" %}
+              {% endwith %}
+            </div>
+            <div class="tab-pane" id="customer-view"></div>
+          </div>
+        </div>
       </div>
-      <div class="span5">
+
+      <div class="span6">
         <h2>Item</h2>
+        <div id="item" class="tabbable">
+          <ul class="nav nav-tabs">
+            <li class="active">
+              <a class="create" href="#item-create" data-toggle="tab">Create</a></li>
+            <li>
+              <a class="view" href="#item-view" data-toggle="tab">View</a></li>
+          </ul>
+          <div class="tab-content">
+            <div class="tab-pane active create" id="item-create">
+              {% with item_form as form %}
+              {% include "item/create.html" %}
+              {% endwith %}
+            </div>
+            <div class="tab-pane" id="item-view"></div>
+          </div>
+        </div>
       </div>
     </div>
+
     <div class="row-fluid">
-      <div class="span10">
+      <div class="span6">
         <h2>Transaction</h2>
-      </div>
+          <div id="transaction">
+            {% with trans_form as form %}
+            {% include "transaction/create.html" %}
+            {% endwith %}
+          </div>
     </div>
-  </div>
-  <div class="span2">
-    <h2>History</h2>
   </div>
 </div>
+{% endblock %}

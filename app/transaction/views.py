@@ -17,7 +17,10 @@ def latest_tran(i):
   except ObjectDoesNotExist:
     return None
 
-# Actual view actions.
+@staff_only
+def index(request):
+  transactions = Transaction.objects.all()
+  return render_to_response('transaction/index.html', {'transactions': transactions}, context_instance=RequestContext(request))
 
 @staff_only
 @json_response('POST')
@@ -71,7 +74,7 @@ def create(request):
         if last_tran.action != 'b' or last_tran.customer != c:
           return {'success': False, 'reason': 'Item not borrowed by selected customer'}
 
-
+      form.instance.signoff = request.user
       form.save()
       return { 'success': True }
     return { 'success': False }
