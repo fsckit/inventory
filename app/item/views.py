@@ -56,7 +56,7 @@ def update(request, id = -1):
     return { 'success': False }
   else:
     # Create a form based on the instance of the customer found
-     form = ItemCreate(instance=item)
+    form = ItemCreate(instance=item)
     return render_to_response('item/update.html', {'form': form}, context_instance=RequestContext(request))
 
 # Delete a item -- stub; may not implement
