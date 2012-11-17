@@ -5,10 +5,10 @@ from app.item.models import Item
 
 class Transaction(models.Model):
   ACTIONS = (
-    (u'b',	u'borrow'), # Lend from the con to customer
-    (u'l',	u'lend'),   # Lend from item.owner to the con
-    (u'r',	u'return'), # Return from customer to the con
-    (u'c',	u'claim'),  # Return from the con to item.owner
+    (u'b',	u'Borrow'), # Lend from the con to customer
+    (u'l',	u'Lend'),   # Lend from item.owner to the con
+    (u'r',	u'Return'), # Return from customer to the con
+    (u'c',	u'Claim'),  # Return from the con to item.owner
   )
 
   date      = models.DateTimeField(auto_now=True)

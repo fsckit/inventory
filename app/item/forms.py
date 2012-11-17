@@ -6,3 +6,6 @@ class ItemCreate(forms.ModelForm):
   
   class Meta:
     model = Item  
+    widgets = {
+        'owner': forms.widgets.TextInput(attrs={'autocomplete':'off'}),
+    }
