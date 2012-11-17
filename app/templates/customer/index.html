@@ -1,10 +1,13 @@
 {% extends "fragment.html" %}
 
 {% block content %}
-<h2>Customers</h2>
-<ul>
+
+<table class="table table-striped table-condensed">
   {% for c in customer %}
-    <li><a href="/customer/{{c.id}}">{{c.full_name}}</a></li>
+    <tr>
+      <td><a href="/customer/{{c.student_id}}">{{c.full_name}}</a></td>
+      <td>{{c.student_id}}</td>
+    </tr>
   {% endfor %}
-</ul>
+</table>
 {% endblock %}

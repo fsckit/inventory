@@ -10,7 +10,7 @@ from django.core.urlresolvers import reverse
 
 @staff_only
 def index(request):
-  items = Item.objects.all()
+  items = Item.objects.all().order_by('name')
   return render_to_response('item/index.html', {'items': items}, context_instance=RequestContext(request))
 
 @staff_only

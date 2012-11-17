@@ -2,9 +2,12 @@
 
 {% block content %}
 <h2>Items</h2>
-<ul>
+<table class="table table-striped table-condensed">
   {% for i in items %}
-    <li><a href="/item/{{i.pk}}">{{i.name}}</a></li>
+    <tr>
+      <td><a href="/item/{{i.pk}}">{{i.name}}</a></td>
+      <td>{{i.label_id}}</td>
+    </tr>
   {% endfor %}
-</ul>
+</table>
 {% endblock %}
