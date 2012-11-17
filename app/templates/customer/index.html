@@ -3,8 +3,8 @@
 {% block content %}
 <h2>Customers</h2>
 <ul>
-  {% for name, id in customer %}
-    <li><a href="/customer/{{id}}">{{name}}</a></li>
+  {% for c in customer %}
+    <li><a href="/customer/{{c.id}}">{{c.full_name}}</a></li>
   {% endfor %}
 </ul>
 {% endblock %}

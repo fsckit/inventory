@@ -8,7 +8,7 @@ from app.customer.models import Customer
 
 @staff_only
 def index(request):
-  customer = [(customer.full_name, customer.student_id) for customer in Customer.objects.all()]
+  customer = Customer.objects.all()
   return render_to_response('customer/index.html', {'customer': customer}, context_instance=RequestContext(request))
 
 @staff_only

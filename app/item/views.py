@@ -10,7 +10,7 @@ from django.core.urlresolvers import reverse
 
 @staff_only
 def index(request):
-  items = [(item.name, item.label_id) for item in Item.objects.all()]
+  items = Item.objects.all()
   return render_to_response('item/index.html', {'items': items}, context_instance=RequestContext(request))
 
 @staff_only
@@ -29,13 +29,13 @@ def create(request):
 # Show an individual item's details.
 @staff_only
 def read(request, id = -1):
-  item = Item.objects.get(label_id=id)
+  item = Item.objects.get(pk=id)
   return render_to_response('item/read.html', {'item': item}, context_instance=RequestContext(request))
 
 @staff_only
 @json_response('POST')
 def update(request, id = -1):
-  item = Item.objects.get(label_id=id)
+  item = Item.objects.get(pk=id)
   if request.method == 'POST':
     form = ItemCreate(request.POST, request.FILES, instance=item)
     if form.is_valid():
