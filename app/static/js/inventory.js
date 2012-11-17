@@ -1,14 +1,14 @@
 (function($){
   // Events
   $(function(){
-    // View tabs
+    // View tabs trigger load events
     ['customer', 'item'].forEach(function(type){
       $('#stage').on('show', '#' + type + ' .view', function(e) {
         $(e.target.hash).load('/' + type + '/index');
       });
     });
 
-    // Load history
+    // Load initial history
     $('#transaction-history').load('/transaction/index');
 
     // Set up search/autocomplete fields
@@ -19,6 +19,7 @@
       var $this = $(this);
       e.preventDefault();
 
+      // Post the form data to the endpoint described in the form
       $.ajax({
         type: 'POST',
         url: $this.attr('action'),
@@ -28,6 +29,7 @@
         processData: false,
       })
       .done(function(){
+        // Reset the form and focus the transaction form
         $this.get(0).reset();
         $('#transaction :input:first').focus();
       })

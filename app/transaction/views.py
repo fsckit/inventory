@@ -17,14 +17,20 @@ def latest_tran(i):
   except ObjectDoesNotExist:
     return None
 
+# Controller for transaction: recieves a request, interfaces with the database,
+# and renders the template result for the view
+
+# List all transactions
 @staff_only
 def index(request):
   transactions = Transaction.objects.all()
   return render_to_response('transaction/index.html', {'transactions': transactions}, context_instance=RequestContext(request))
 
+# Create new transaction
 @staff_only
 @json_response('POST')
 def create(request):
+  # POST flag discriminates submission from form request
   if request.method == 'POST':
     form = TransactionForm(request.POST, request.FILES)
 
@@ -74,24 +80,31 @@ def create(request):
         if last_tran.action != 'b' or last_tran.customer != c:
           return {'success': False, 'reason': 'Item not borrowed by selected customer'}
 
+      # Add the current staff member as a signoff
       form.instance.signoff = request.user
       form.save()
       return { 'success': True }
+    # Form was invalid
     return { 'success': False }
   else:
+    # Just show the form to the user
     form = TransactionForm()
     return render_to_response('transaction/create.html', {'form': form}, context_instance=RequestContext(request))
 
+# Read a single transaction
 @staff_only
 def read(request, id = -1):
+  # Fetch from the database
   qs = Transaction.objects.get(pk=id)
   return render_to_response('transaction/read.html', {'o': qs}, context_instance=RequestContext(request))
 
+# Update a tranasction -- stub; may not implement
 @staff_only
 @json_response
 def update(request, id = -1):
   return { 'route': request.path }
 
+# Delete a tranasction -- stub; may not implement
 @staff_only
 @json_response
 def delete(request, id = -1):

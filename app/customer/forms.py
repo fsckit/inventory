@@ -1,6 +1,8 @@
 from django import forms
 from app.customer.models import Customer
 
+# Basic customer creation/update form
+
 class CreateForm(forms.ModelForm):
   class Meta:
     model = Customer

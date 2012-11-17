@@ -1,5 +1,8 @@
 from django.conf.urls.defaults import *
 
+# Routes for the different operations on a single customer; links a URI to a
+# controller
+
 urlpatterns = patterns('app.customer.views',
   url(r'^index/$', 'index', name='customer_index'),
   url(r'^create/$', 'create', name='customer_create'),
