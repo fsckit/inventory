@@ -35,5 +35,11 @@
       })
       .fail($.err);
     });
+
+    // Set up cancel buttons on update forms
+    $('input.btn.cancel').on('click', function(e){
+      e.preventDefault();
+      document.location = '/';
+    });
   });
 })(jQuery);
