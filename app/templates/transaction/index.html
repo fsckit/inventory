@@ -1,0 +1,12 @@
+{% extends "fragment.html" %}
+
+{% block content %}
+<table class="table">
+  {% for t in transactions %}
+  <tr>
+    <td><a href="/transaction/{{t.id}}">{{t.date|date}}</a></td>
+    <td>{{t.action}}</td>
+  </tr>
+  {% endfor %}
+</table>
+{% endblock %}

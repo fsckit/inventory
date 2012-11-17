@@ -1,14 +1,19 @@
 from django.conf.urls.defaults import *
 
+# Routes for the different operations on a single staff; links a URI to a
+# controller
+
 urlpatterns = patterns('app.staff.views',
+  # Basic staff methods
   url(r'^create/$', 'create', name='staff_create'),
   url(r'^(\d+)/$', 'read', name='staff_read'),
   url(r'^update/$', 'update', name='staff_update'),
-#user auth patterns
+  # Staff auth patterns
   url(r'^email_sent/$', 'email_sent', name='activation_email_sent'),
   url(r'^activation/(?P<activation_key>\w+)/$', 'activation', name='staff_activation'),
 )
 
+# Routes provided by Django for basic user functions
 urlpatterns += patterns('django.contrib.auth.views',
   url(r'login/$', 'login', name='login'),
   url(r'logout/$', 'logout', {'next_page': '/'}, name='logout'),
