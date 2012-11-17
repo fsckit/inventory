@@ -15,7 +15,7 @@
 
 	<div class="span6">
         <h2>Customer</h2>
-        <div id='customer' class="tabbable">
+        <div id="customer" class="tabbable">
           <ul class="nav nav-tabs">
             <li class="active">
               <a class="create" href="#customer-create" data-toggle="tab">Create</a></li>
@@ -23,7 +23,7 @@
               <a class="view" href="#customer-view" data-toggle="tab">View</a></li>
           </ul>
           <div class="tab-content">
-            <div class="tab-pane active" id="customer-create">
+            <div class="tab-pane active create" id="customer-create">
               {% with customer_form as form %}
               {% include "customer/create.html" %}
               {% endwith %}
@@ -38,12 +38,12 @@
         <div id="item" class="tabbable">
           <ul class="nav nav-tabs">
             <li class="active">
-              <a class="create" href="#item-create" data-toggle="tab">Create</a></li>
+              <a href="#item-create" data-toggle="tab">Create</a></li>
             <li>
-              <a class="view" href="#item-view" data-toggle="tab">View</a></li>
+              <a href="#item-view" data-toggle="tab">View</a></li>
           </ul>
           <div class="tab-content">
-            <div class="tab-pane active" id="item-create">
+            <div class="tab-pane active create" id="item-create">
               {% with item_form as form %}
               {% include "item/create.html" %}
               {% endwith %}
@@ -57,7 +57,7 @@
     <div class="row-fluid">
       <div class="span6">
         <h2>Transaction</h2>
-          <div class="tab-pane active" id="tab5">
+          <div id="transaction">
             {% with trans_form as form %}
             {% include "transaction/create.html" %}
             {% endwith %}
