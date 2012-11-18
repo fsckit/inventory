@@ -1,3 +1,14 @@
+.navbar .alert {
+  font-weight: bold;
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 10px;
+  margin-left: 30px;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
 #stage {
   margin-top: 10px;
 }
