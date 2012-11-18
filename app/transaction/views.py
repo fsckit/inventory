@@ -1,15 +1,14 @@
-from app.decorators import json_response, staff_only
-from app.transaction.forms import TransactionForm
+from random import randrange
 from django.db.models import Max
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 from django.http import HttpResponseRedirect
 from django.core.urlresolvers import reverse
 from django.core.exceptions import ObjectDoesNotExist
+from app.decorators import json_response, staff_only
+from app.transaction.forms import TransactionForm
 from app.transaction.models import Transaction
 from app.transaction.email import SendMessage
-from uuid import uuid1 as guid
-
 from app.item.models import Item
 
 
@@ -88,11 +87,9 @@ def create(request):
       form.instance.signoff = request.user
 
       # Email receipt
-      form.instance.id = guid().int
+      form.instance.id = int(''.join(str(randrange(10)) for i in range(9)))
       instance = form.save()
-
-      # Call SendMessage in email module
-      SendMessage(instance)
+      instance.send_email()
 
       return { 'success': True }
     # Form was invalid

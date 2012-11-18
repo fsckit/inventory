@@ -1,5 +1,7 @@
+import os
 from django.contrib.auth.models import User
 from django.db import models
+from app import utils
 from app.customer.models import Customer
 from app.item.models import Item
 
@@ -15,7 +17,7 @@ class Transaction(models.Model):
   )
 
 
-  id        = models.CharField(max_length=128, primary_key=True)
+  id        = models.IntegerField(primary_key=True)
   # Date of transaction, handled automatically
   date      = models.DateTimeField(auto_now=True)
   # Action type as enumeration of above
@@ -26,3 +28,18 @@ class Transaction(models.Model):
   item      = models.ForeignKey(Item, on_delete=models.PROTECT)
   signoff   = models.ForeignKey(User, on_delete=models.PROTECT)
 
+  def send_email(self):
+    CHOICES = {'b': 'borrow.html', 'l': 'lend.html', 'r': 'return.html', 'c': 'claim.html'}
+    template = os.path.join('email', CHOICES[self.action])
+
+    # Generate email
+    utils.mailer(
+      to = self.customer.email,
+      subject = 'Genericon Transaction Completed',
+      template = template,
+      context = {
+        'customer': self.customer,
+        'item': self.item,
+        'id': self.id,
+      }
+    )

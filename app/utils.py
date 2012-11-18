@@ -1,7 +1,8 @@
 from django.conf import settings
 from django.core import mail
-from django.core.mail import send_mail
+from django.core.mail import EmailMultiAlternatives
 from django.template.loader import render_to_string
+from django.utils.html import strip_tags
 
 def mailer(to, subject, template, context):
   # Load settings
@@ -9,8 +10,13 @@ def mailer(to, subject, template, context):
   connection.open()
 
   # Generate template
-  message = render_to_string(template, context)
+  html_message = render_to_string(template, context)
+  text_message = strip_tags(html_message)
 
   # Send email
-  mail.EmailMessage(subject, message, settings.EMAIL_FROM, [to], connection=connection).send()
+  email = EmailMultiAlternatives(subject, text_message, settings.EMAIL_FROM, [to], connection=connection)
+  email.attach_alternative(html_message, 'text/html')
+  email.send()
+
+  # Close connection
   connection.close()
