@@ -26,7 +26,7 @@ def create(request):
     form = ItemCreate(request.POST, request.FILES)
     if form.is_valid():
       form.save()
-      return { 'success': True }
+      return { 'success': True, 'message': "Item '%s' created" % form.instance.name }
     # Form was invalid
     return { 'success': False, 'errors': form.errors }
   else:
@@ -51,7 +51,7 @@ def update(request, id = -1):
     form = ItemCreate(request.POST, request.FILES, instance=item)
     if form.is_valid():
       form.save()
-      return { 'success': True }
+      return { 'success': True, 'message': "Item '%s' updated" % form.instance.name }
     # Form was invalid
     return { 'success': False, 'errors': form.errors }
   else:

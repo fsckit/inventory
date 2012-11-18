@@ -24,7 +24,7 @@ def create(request):
     form = CreateForm(request.POST, request.FILES)
     if form.is_valid():
       obj = form.save()
-      return { 'success': True }
+      return { 'success': True, 'message': "Customer '%s' added" % form.instance.full_name }
     # Form was invalid
     return { 'success': False, 'errors': form.errors }
   else:
@@ -49,7 +49,7 @@ def update(request, id=-1):
     form = CreateForm(request.POST, request.FILES, instance=customer)
     if form.is_valid():
       obj = form.save()
-      return { 'success': True }
+      return { 'success': True, 'message': "Customer '%s' updated" % form.instance.full_name }
     # Invalid form
     return { 'success': False, 'errors': form.errors }
   else:

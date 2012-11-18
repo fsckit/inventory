@@ -39,7 +39,7 @@ def create(request):
       instance = form.save()
       instance.send_email()
 
-      return { 'success': True }
+      return { 'success': True, 'message': "Transaction #%d added" % instance.id }
     # Form was invalid
     return { 'success': False, 'errors': form.errors }
   else:

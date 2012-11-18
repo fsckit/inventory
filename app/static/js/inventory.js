@@ -34,6 +34,8 @@
       .done(function(result){
         if (result.success) {
           // Reset the form and focus the transaction form
+          if (result.message)
+            $.success(result.message);
           $this.get(0).reset();
           $('#transaction :input:first').focus();
         } else if (result.errors) {
@@ -48,6 +50,13 @@
           }
         }
       });
+    });
+
+    // Error handler on form
+    $('form').on('errors', function(e, errors) {
+      // Temporarily dump in error handler
+      if (errors)
+        errors.forEach($.error);
     });
 
     // Error handlers on fields
