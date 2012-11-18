@@ -1,6 +1,8 @@
-from random import randint as rng
+from time import time
+from django.conf import settings
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.models import User
+from django.contrib.auth.hashers import make_password
 from django.core.urlresolvers import reverse
 from django.http import HttpResponseRedirect, Http404
 from django.shortcuts import render_to_response
@@ -30,12 +32,12 @@ def create(request):
     if form.is_valid():
       # Generate activation key
       name = form.cleaned_data['first_name'] + form.cleaned_data['last_name']
-      salt = (name[rng(0,int(len(name)/2)):rng(int(len(name)/2),len(name))] + name[::-1])
+      salt = sha_constructor(settings.SECRET_KEY).hexdigest()[:8]
       activation_key = sha_constructor(salt + form.cleaned_data['email']).hexdigest()
 
       # Create user object specially
       user = User.objects.create_user(form.cleaned_data['email'], form.cleaned_data['email'])
-      user.password = activation_key
+      user.password = make_password(activation_key, salt)
 
       # Set first and last name
       user.first_name = form.cleaned_data['first_name']
@@ -64,7 +66,9 @@ def create(request):
 def activation(request, activation_key=None):
   # Check if users exists
   try:
-    user = User.objects.get(password=activation_key)
+    salt = sha_constructor(settings.SECRET_KEY).hexdigest()[:8]
+    password = make_password(activation_key, salt)
+    user = User.objects.get(password=password)
   except ObjectDoesNotExist:
     raise Http404
   # POST flag discriminates submission from form request
