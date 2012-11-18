@@ -15,7 +15,7 @@ MANAGERS = ADMINS
 DATABASES = { 'default': dj_database_url.config() }
 
 # Configuration for SendGrid on Heroku
-EMAIL_FROM = 'no-reply@genericon.union.rpi.edu'
+EMAIL_FROM = 'Genericon <no-reply@genericon.union.rpi.edu>'
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 EMAIL_HOST = 'smtp.sendgrid.com'
 EMAIL_PORT = '587'
