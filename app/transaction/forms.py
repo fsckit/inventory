@@ -2,6 +2,21 @@ from django import forms
 from app.transaction.models import Transaction
 
 class TransactionForm(forms.ModelForm):
+  def clean_item(self):
+    data = self.cleaned_data['item']
+    raise Exception('cleaner')
+    if data == None:
+      raise forms.ValidationError("Item does not exist.")
+
+    return data
+
+  def clean_customer(self):
+    data = self.cleaned_data['customer']
+    if data == None:
+      raise forms.ValidationError("Customer does not exist.")
+
+    return data
+
   def clean(self):
     cleaned_data = super(TransactionForm, self).clean()
 
@@ -9,6 +24,12 @@ class TransactionForm(forms.ModelForm):
     action = cleaned_data.get('action')
     c = cleaned_data.get('customer')
     i = cleaned_data.get('item')
+
+    # If either the item or customer were not provided, they will already have
+    # validation errors, so we can skip this
+    if c is None or i is None:
+      return cleaned_data
+
     t = i.latest_tran()
 
     if action == 'c':
