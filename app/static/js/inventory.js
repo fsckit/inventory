@@ -19,6 +19,9 @@
       var $this = $(this);
       e.preventDefault();
 
+      // Clear all current errors
+      $this.add(':input', $this).trigger('errors', null);
+
       // Post the form data to the endpoint described in the form
       $.ajax({
         type: 'POST',
@@ -38,11 +41,32 @@
           for (var field in result.errors) {
             var errors = result.errors[field];
             if (field == '__all__') {
-              $this.trigger('errors', errors);
+              $this.trigger('errors', [errors]);
             } else {
-              $this.find('[name=' + field + ']').trigger('errors', errors);
+              $this.find('[name=' + field + ']').trigger('errors', [errors]);
             }
           }
+        }
+      });
+    });
+
+    // Error handlers on fields
+    $('form :input').each(function(){
+      var $this = $(this);
+
+      // Create error display
+      var $err = $('<div>', {class: 'error'}).insertAfter($this).hide();
+
+      // Bind event listener
+      $this.on('errors', function(e, errors) {
+        if (errors) {
+          $err.tooltip({
+            placement: 'right',
+            trigger: 'hover',
+            title: errors.join('\n'),
+          }).show();
+        } else {
+          $err.hide();
         }
       });
     });
