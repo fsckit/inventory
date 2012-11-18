@@ -16,6 +16,8 @@ DATABASES = {
     }
 }
 
+EMAIL_FROM = 'no-reply@genericon.union.rpi.edu'
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 MEDIA_URL = ''
 STATIC_URL = '/static/'

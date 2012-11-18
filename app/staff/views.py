@@ -1,17 +1,16 @@
+from random import randint as rng
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.models import User
 from django.core.urlresolvers import reverse
 from django.http import HttpResponseRedirect, Http404
 from django.shortcuts import render_to_response
 from django.template import RequestContext
+from django.utils.hashcompat import sha_constructor
+from django.core.exceptions import ObjectDoesNotExist
 from app.decorators import json_response, staff_only, superuser_only
+from app import utils
 from app.staff.forms import CreateForm, UpdateForm
 from app.staff.forms import ActivationForm
-from django.core.mail import send_mail
-from django.utils.hashcompat import sha_constructor
-from random import randint as rng
-from django.core.exceptions import ObjectDoesNotExist
-from django.core import mail
 
 # Controller for staff: recieves a request, interfaces with the database,
 # and renders the template result for the view
@@ -29,10 +28,7 @@ def create(request):
   if request.method == 'POST':
     form = CreateForm(request.POST, request.FILES)
     if form.is_valid():
-      connection = mail.get_connection('django.core.mail.backends.console.EmailBackend')
-      connection.open()
-
-      # generate activation key
+      # Generate activation key
       name = form.cleaned_data['first_name'] + form.cleaned_data['last_name']
       salt = (name[rng(0,int(len(name)/2)):rng(int(len(name)/2),len(name))] + name[::-1])
       activation_key = sha_constructor(salt + form.cleaned_data['email']).hexdigest()
@@ -46,11 +42,16 @@ def create(request):
       user.last_name = form.cleaned_data['last_name']
       user.is_superuser = form.cleaned_data['is_superuser']
 
-      # generate message
-      link = 'http://127.0.0.1:8000/staff/activation/'
-      message = 'Go to ' + link + str(activation_key)
-      mail.EmailMessage('Account Activation Link - Genericon Inventory Tracker', message, 'from@example.com', [form.cleaned_data['email']], connection=connection).send()
-      connection.close()
+      # Generate email
+      utils.mailer(
+        to = form.cleaned_data['email'],
+        subject = 'Account Activation Link - Genericon Inventory Tracker',
+        template = 'email/registration.html',
+        context = {
+          'name': form.cleaned_data['first_name'],
+          'link': 'http://%s/staff/activation/%s' % (request.META['HTTP_HOST'], activation_key),
+        }
+      )
 
       user.save()
       return HttpResponseRedirect(reverse('activation_email_sent'))
