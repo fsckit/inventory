@@ -11,8 +11,9 @@ def json_response(method):
       # The result of the controller is then passed here, and we dump it as a
       # JSON string if it matches the method
       if request.method == method:
-        response = json.dumps(fn(request, *args, **kwargs))
-        return HttpResponse(response, mimetype='application/json')
+        result = fn(request, *args, **kwargs)
+        response = HttpResponse(json.dumps(result), mimetype='application/json')
+        return response
       else:
         # Otherwise do the basic return 
         return fn(request, *args, **kwargs)

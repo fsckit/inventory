@@ -26,7 +26,7 @@ def create(request):
       obj = form.save()
       return { 'success': True }
     # Form was invalid
-    return { 'success': False }
+    return { 'success': False, 'errors': form.errors }
   else:
     # Just show the form to the user
     form = CreateForm()
@@ -51,7 +51,7 @@ def update(request, id=-1):
       obj = form.save()
       return { 'success': True }
     # Invalid form
-    return { 'success': False }
+    return { 'success': False, 'errors': form.errors }
   else:
     # Create a form based on the instance of the customer found
     form = CreateForm(instance=customer)

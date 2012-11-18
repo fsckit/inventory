@@ -8,8 +8,7 @@
       $this.on('keypress', _.debounce(function(){
         $.get('/search', { q: $this.val() })
           // Results are piped to autocomplete
-          .done($this.autocomplete)
-          .fail($.error);
+          .done($this.autocomplete);
       }, 500));
     });
   };

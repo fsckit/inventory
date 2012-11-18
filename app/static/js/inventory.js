@@ -28,12 +28,23 @@
         contentType: false,
         processData: false,
       })
-      .done(function(){
-        // Reset the form and focus the transaction form
-        $this.get(0).reset();
-        $('#transaction :input:first').focus();
-      })
-      .fail($.err);
+      .done(function(result){
+        if (result.success) {
+          // Reset the form and focus the transaction form
+          $this.get(0).reset();
+          $('#transaction :input:first').focus();
+        } else if (result.errors) {
+          // Display errors inline
+          for (var field in result.errors) {
+            var errors = result.errors[field];
+            if (field == '__all__') {
+              $this.trigger('errors', errors);
+            } else {
+              $this.find('[name=' + field + ']').trigger('errors', errors);
+            }
+          }
+        }
+      });
     });
 
     // Set up cancel buttons on update forms

@@ -93,7 +93,7 @@ def create(request):
 
       return { 'success': True }
     # Form was invalid
-    return { 'success': False }
+    return { 'success': False, 'errors': form.errors }
   else:
     # Just show the form to the user
     form = TransactionForm()
