@@ -1,11 +1,15 @@
 {% extends "fragment.html" %}
 
 {% block content %}
-<table class="table">
+<table class="index table table-striped table-condensed">
+  <tr>
+    <th>Time</th>
+    <th>Action</th>
+  </tr>
   {% for t in transactions %}
   <tr>
-    <td><a href="/transaction/{{t.id}}">{{t.date|date}}</a></td>
-    <td>{{t.action}}</td>
+    <td><a href="/transaction/{{t.id}}">{{t.date|time}}</a></td>
+    <td>{{t.get_action_display}}</td>
   </tr>
   {% endfor %}
 </table>

@@ -2,12 +2,16 @@
 
 {% block content %}
 
-<table class="table table-striped table-condensed">
+<table class="index table table-striped table-condensed">
+  <tr>
+    <th>Student Name</th>
+    <th>RIN</th>
+  </tr>
   {% for c in customer %}
-    <tr>
-      <td><a href="/customer/{{c.student_id}}">{{c.full_name}}</a></td>
-      <td>{{c.student_id}}</td>
-    </tr>
+  <tr>
+    <td><a href="/customer/{{c.student_id}}">{{c.full_name}}</a></td>
+    <td>{{c.student_id}}</td>
+  </tr>
   {% endfor %}
 </table>
 {% endblock %}
