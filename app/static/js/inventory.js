@@ -76,5 +76,35 @@
       e.preventDefault();
       document.location = '/';
     });
+
+    // Index view tables
+    $('#stage').on('click', 'table.index a', function(e){
+      var $this = $(this);
+      e.preventDefault();
+      e.stopPropagation();
+      // Load data
+      $.get($this.attr('href'))
+        .done(function(contents){
+          var $contents = $(contents);
+
+          // Close all other popovers
+          $(document).trigger('click');
+
+          $this.popover({
+            html: true,
+            trigger: 'manual',
+            title: $contents.find('legend').remove().text(),
+            content: $contents.html(),
+          }).popover('show');
+        })
+    });
+    // Close all popovers
+    $(document).on('click', function(e){
+      $('#stage table.index a').popover('destroy');
+    });
+    // But catch clicks on popovers
+    $(document).on('click', '.popover', function(e){
+      e.stopPropagation();
+    });
   });
 })(jQuery);

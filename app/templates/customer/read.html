@@ -1,15 +1,17 @@
 {% extends "fragment.html" %}
 
 {% block content %}
-{% csrf_token %}
-  <legend>Customer Info</legend> 
-    <div class="container-fluid">
-      {{customer.full_name}}<br>
-      {{customer.student_id}}<br>
-      {{customer.email}}<br>
-      {{customer.phone_number}}<br>
-    </div>
+<legend>{{customer.full_name}}</legend>
+<dl class="dl-horizontal">
+  <dt>Student id</dt>
+  <dd>{{customer.student_id}}</dd>
 
-    <a href="/customer/{{customer.student_id}}/update">Edit customer</a>
-    
+  <dt>Email</dt>
+  <dd>{{customer.email}}</dd>
+
+  <dt>Phone</dt>
+  <dd>{{customer.phone_number}}</dd>
+</dl>
+
+<a class="edit" href="/customer/{{customer.student_id}}/update"></a>
 {% endblock %}

@@ -1,8 +1,18 @@
 {% extends "fragment.html" %}
 
 {% block content %}
-  Date: {{o.date}} <br>
-  Action: {{o.action}} <br>
-  Customer: {{o.customer.full_name}} <br>
-  Item: {{o.item.name}} <br>
+<legend>Transaction #{{o.id}}</legend>
+<dl class="dl-horizontal">
+  <dt>Date</dt>
+  <dd>{{o.date}}</dd>
+
+  <dt>Action</dt>
+  <dd>{{o.get_action_display}}</dd>
+
+  <dt>Customer</dt>
+  <dd>{{o.customer}}</dd>
+
+  <dt>Item</dt>
+  <dd>{{o.item}}</dd>
+</dl>
 {% endblock %}

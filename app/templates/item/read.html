@@ -1,14 +1,20 @@
 {% extends "fragment.html" %}
 
 {% block content %}
-  <legend>Item Info</legend> 
-    <div class="container-fluid">
-      Item name: {{item.name}}<br>
-      Item label: {{item.label_id}}<br>
-      Item owner: {{item.owner}}<br>
-      Item type: {{item.type}}<br>
-    </div>
+<legend>{{item.name}}</legend>
+<dl class="dl-horizontal">
+  <dt>ID</dt>
+  <dd>{{item.label_id}}</dd>
 
-    <a href="/item/{{item.label_id}}/update">Edit item</a>
-    
+  <dt>Type</dt>
+  <dd>{{item.get_type_display}}</dd>
+
+  <dt>Owner</dt>
+  <dd>{{item.owner}}</dd>
+
+  <dt>Status</dt>
+  <dd>--</dd>
+</dl>
+
+<a class="edit" href="/item/{{item.label_id}}/update"></a>
 {% endblock %}
