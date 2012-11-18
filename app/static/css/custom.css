@@ -1,0 +1,33 @@
+#stage {
+  margin-top: 10px;
+}
+
+#stage .tabbable {
+  margin-top: 3px;
+}
+
+#stage form {
+  position: relative;
+  border-bottom: 1px solid #DDD;
+  padding-bottom: 10px;
+}
+
+#stage form .control-group {
+  margin-bottom: 0;
+}
+
+#stage form .form-actions-inline {
+  position: absolute;
+  bottom: 10px;
+  right: 0;
+  margin-bottom: 5px;
+}
+
+.tabbable > legend {
+  float: left;
+  width: auto;
+  margin-bottom: 0;
+  margin-right: 30px;
+  border-bottom: none;
+  line-height: 37px;
+}

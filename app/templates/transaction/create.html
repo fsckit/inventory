@@ -1,10 +1,7 @@
 <form class="form-horizontal" action="{% url transaction_create %}" method="post">
-  <fieldset>
-    <legend>Create Transaction</legend>
-    {% include "_form.html" %}
-    {% csrf_token %}
-    <div class="form-actions">
-      <input class="btn btn-primary" type="submit">
-    </div>
-  </fieldset>
+  {% include "_form.html" %}
+  {% csrf_token %}
+  <div class="form-actions-inline">
+    <input class="btn btn-primary" type="submit">
+  </div>
 </form>
