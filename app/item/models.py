@@ -25,3 +25,11 @@ class Item(models.Model):
   # Return an item instance as a string
   def __str__(self):
     return str(self.name)
+
+  # Get latest transaction on some item
+  def latest_tran(self):
+    last_tran_dt = Transaction.objects.filter(item=self).aggregate(Max('date'))['date__max']
+    try:
+      return Transaction.objects.get(item=self, date=last_tran_dt)
+    except ObjectDoesNotExist:
+      return None
