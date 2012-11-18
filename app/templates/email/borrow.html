@@ -1,3 +1,4 @@
+{% extends "email/base.html" %}
 {% block title %}Thank you for participating at RPI's Genericon.{% endblock %}
 
 {% block content %}
@@ -6,7 +7,4 @@
 You have borrowed {{item.name}} from the inventory.
 
 Transaction #: {{id}}
-
-Have a good day
-
 {% endblock %}

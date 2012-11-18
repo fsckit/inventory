@@ -1,8 +1,10 @@
+{% extends "email/base.html" %}
 {% block title %}Registration Confirmation{% endblock %}
 
 {% block content %}
 {{name}},
 
-Go to {{link}} to complete your registration
+An admin at Genericon has created a staff account for you. Go to the following link to complete your registration:
 
+{{link}}
 {% endblock %}
