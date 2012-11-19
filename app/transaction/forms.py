@@ -81,6 +81,6 @@ class TransactionForm(forms.ModelForm):
     fields = ['action', 'customer', 'item']
     # We also force the foreign keys to appear as searchable text widgets
     widgets = {
-        'customer': forms.widgets.TextInput(attrs={'autocomplete':'off', 'class':'search'}),
-        'item': forms.widgets.TextInput(attrs={'autocomplete':'off', 'class':'search'}),
+        'customer': forms.widgets.TextInput(attrs={'autocomplete':'off', 'class':'search customers'}),
+        'item': forms.widgets.TextInput(attrs={'autocomplete':'off', 'class':'search items'}),
     }

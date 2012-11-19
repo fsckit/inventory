@@ -3,12 +3,19 @@
   $.fn.search = function() {
     this.each(function(){
       var $this = $(this),
-          results = {};
+          results = {},
+          classes = $this.attr('class').split(/\s+/);
 
       $this.typeahead({
         source: _.debounce(function(query, next){
           $.get('/search', { q: query, t: 'json' })
             .done(function(res){
+              // If there is some overlap between the keys in the return and our
+              // class names, use those keys only. Otherwise, we use all keys.
+              var limit = _.intersection(classes, _.keys(res));
+              if (limit.length > 0)
+                res = _.pick(res, limit);
+
               results = _.flatten(_.values(res));
               next(_.keys(results));
             });

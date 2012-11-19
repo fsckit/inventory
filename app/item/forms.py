@@ -9,5 +9,5 @@ class ItemCreate(forms.ModelForm):
     model = Item  
     widgets = {
         # Change the select to a searchable input widget
-        'owner': forms.widgets.TextInput(attrs={'autocomplete': 'off', 'class': 'search'}),
+        'owner': forms.widgets.TextInput(attrs={'autocomplete': 'off', 'class': 'search customers'}),
     }
