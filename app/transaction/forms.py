@@ -4,7 +4,6 @@ from app.transaction.models import Transaction
 class TransactionForm(forms.ModelForm):
   def clean_item(self):
     data = self.cleaned_data['item']
-    raise Exception('cleaner')
     if data == None:
       raise forms.ValidationError("Item does not exist.")
 
