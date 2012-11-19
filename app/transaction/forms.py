@@ -45,6 +45,10 @@ class TransactionForm(forms.ModelForm):
         raise forms.ValidationError('Item currently borrowed')
 
     elif action == 'l':
+      # claim: item.owner must be the selected customer
+      if i.owner != c:
+        raise forms.ValidationError('Selected customer not item owner')
+
       # claim: either there are no transactions or the last transaction was claim.
       # so, it fails if there are transactions and the last transaction was not claim.
       if t is not None and t.action != 'c':
