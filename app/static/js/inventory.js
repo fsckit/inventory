@@ -45,6 +45,9 @@
             $.success(result.message);
           $this.get(0).reset();
           $('#transaction :input:first').focus();
+          // Also reload the transaction list -- this could use some cleaning up
+          // in the future.
+          $('#transaction-history').load('/transaction/index');
         } else if (result.errors) {
           // Display errors inline
           for (var field in result.errors) {

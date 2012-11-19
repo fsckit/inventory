@@ -13,7 +13,7 @@
               next(_.keys(results));
             });
         }, 200),
-        minLength: 3,
+        minLength: 1,
         matcher: function(item) {
           // Reset internal value
           $this.data('value', null);
