@@ -35,8 +35,8 @@ def search(request):
         cq = cq | cq_inc
         iq = iq | iq_inc
     # Fetches data from database for response
-    customers = [(customer.pk, customer.student_id, customer.full_name, customer.email) for customer in Customer.objects.filter(cq)]
-    items = [(item.pk, item.label_id, item.name, item.type) for item in Item.objects.filter(iq)]
+    customers = [{'key': customer.pk, 'id': customer.student_id, 'name': customer.full_name, 'extra': customer.email} for customer in Customer.objects.filter(cq)]
+    items = [{'key': item.pk, 'id': item.label_id, 'name': item.name, 'extra': item.type} for item in Item.objects.filter(iq)]
     context = {'items': items, 'customers': customers}
     if 't' in request.GET and request.GET['t'] == 'json':
       return context

@@ -3,14 +3,14 @@
 {% block content %}
 <h2>Items</h2>
 <ul>
-  {% for id, label, name, type in items %}
-  <li><a href="/item/{{id}}">{{name}} - {{type}} ({{label}})</a></li>
+  {% for i in items %}
+  <li><a href="/item/{{i.key}}">{{i.name}} - {{i.extra}} ({{i.id}})</a></li>
   {% endfor %}
 </ul>
 <h2>Customers</h2>
 <ul>
-  {% for id, student_id, name, email in customers %}
-  <li><a href="/customer/{{id}}">{{name}} - {{email}} ({{student_id}})</a></li>
+  {% for c in customers %}
+  <li><a href="/customer/{{c.key}}">{{c.name}} - {{c.extra}} ({{c.id}})</a></li>
   {% endfor %}
 </ul>
 {% endblock %}
