@@ -6,10 +6,7 @@ from django.core.urlresolvers import reverse
 from app.decorators import json_response, staff_only
 from app.transaction.forms import TransactionForm
 from app.transaction.models import Transaction
-from app.transaction.email import SendMessage
 from app.item.models import Item
-
-
 
 # Controller for transaction: recieves a request, interfaces with the database,
 # and renders the template result for the view
