@@ -1,4 +1,6 @@
+from django.core.exceptions import ObjectDoesNotExist
 from django.db import models
+from django.db.models import Max
 from app.customer.models import Customer
 
 class Item(models.Model):
@@ -28,6 +30,8 @@ class Item(models.Model):
 
   # Get latest transaction on some item
   def latest_tran(self):
+    # Importing here to prevent cyclical imports
+    from app.transaction.models import Transaction
     last_tran_dt = Transaction.objects.filter(item=self).aggregate(Max('date'))['date__max']
     try:
       return Transaction.objects.get(item=self, date=last_tran_dt)

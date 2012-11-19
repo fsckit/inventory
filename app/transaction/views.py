@@ -1,10 +1,8 @@
 from random import randrange
-from django.db.models import Max
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 from django.http import HttpResponseRedirect
 from django.core.urlresolvers import reverse
-from django.core.exceptions import ObjectDoesNotExist
 from app.decorators import json_response, staff_only
 from app.transaction.forms import TransactionForm
 from app.transaction.models import Transaction
