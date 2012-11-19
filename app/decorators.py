@@ -4,13 +4,13 @@ from django.http import HttpResponse
 # Decorators wrap controllers to provide basic functional tests or transformations
 
 # Accepts a method and only returns json on those types (e.g. 'POST')
-def json_response(method):
+def json_response(method, filter=None):
   # Returns the decorator for the function
   def decorator(fn):
     def wrapped(request, *args, **kwargs):
       # The result of the controller is then passed here, and we dump it as a
       # JSON string if it matches the method
-      if request.method == method:
+      if request.method == method and (filter is None or filter(request)):
         result = fn(request, *args, **kwargs)
         response = HttpResponse(json.dumps(result), mimetype='application/json')
         return response

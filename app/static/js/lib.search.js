@@ -6,9 +6,13 @@
 
       // Debounce to 500ms of silence to prevent frequent searching
       $this.on('keypress', _.debounce(function(){
-        $.get('/search', { q: $this.val() })
+        if ($this).val().length < 3)
+          return;
+        $.get('/search', { q: $this.val(), t: 'json' })
           // Results are piped to autocomplete
-          .done($this.autocomplete);
+          .done(function(results){
+            $this.typeahead({source: results});
+          });
       }, 500));
     });
   };
