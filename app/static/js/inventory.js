@@ -22,11 +22,18 @@
       // Clear all current errors
       $this.add(':input', $this).trigger('errors', null);
 
+      // Build form data and replace internal .data() values
+      var formData = new FormData($this.get(0));
+      $this.find(':input.search').each(function(){
+        if ($(this).data('value'))
+          formData.append($(this).attr('name'), $(this).data('value'));
+      });
+
       // Post the form data to the endpoint described in the form
       $.ajax({
         type: 'POST',
         url: $this.attr('action'),
-        data: new FormData($this.get(0)),
+        data: formData,
         dataType: 'json',
         contentType: false,
         processData: false,
