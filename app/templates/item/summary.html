@@ -3,7 +3,7 @@
 {% block content %}
 <div class="float">
   <legend>Loaned to customer</legend>
-  {% if items.loaned.count == 0 %}
+  {% if items.loaned|length == 0 %}
     <p>No items loaned to customers</p>
   {% else %}
     <table class="table table-striped table-condensed">
@@ -27,7 +27,7 @@
 
 <div class="float">
   <legend>In inventory</legend>
-  {% if items.loaned.count == 0 %}
+  {% if items.loaned|length == 0 %}
     <p>No items remaining in inventory</p>
   {% else %}
     <table class="table table-striped table-condensed">
