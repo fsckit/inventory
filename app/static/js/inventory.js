@@ -78,6 +78,7 @@
 
       // Bind event listener
       $this.on('errors', function(e, errors) {
+        e.stopPropagation();
         if (errors) {
           $err.tooltip({
             placement: 'right',
@@ -97,7 +98,7 @@
     });
 
     // Index view tables
-    $('#stage').on('click', 'table.index a', function(e){
+    $(document).on('click', 'table.index a, .popover-show', function(e){
       var $this = $(this);
       e.preventDefault();
       e.stopPropagation();
@@ -115,15 +116,28 @@
             title: $contents.find('legend').remove().text(),
             content: $contents.html(),
           }).popover('show');
+
+          // Register one time close when you click outside of the popover; and
+          // manually destroy because if the element was removed (modal link)
+          // then we lose reference to the popover data object.
+          var popover = $this.data('popover');
+          $(document).one('click', function(e) {
+            popover.destroy();
+          });
         })
     });
-    // Close all popovers
-    $(document).on('click', function(e){
-      $('#stage table.index a').popover('destroy');
-    });
-    // But catch clicks on popovers
+    // Catch clicks on popovers so we don't close them
     $(document).on('click', '.popover', function(e){
       e.stopPropagation();
     });
+  });
+
+  // Summaries
+  $('#item-summary').on('click', function(e){
+    e.preventDefault();
+    // Load into temporary div
+    $('<div>').load(e.target.href, function(){
+      $.modal('Item Summary', this);
+    }).remove();
   });
 })(jQuery);

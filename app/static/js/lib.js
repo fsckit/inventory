@@ -54,4 +54,21 @@
     };
   })();
 
+  // Render a mustache template
+  $.render = function(id, context) {
+    var template = $('script#'+id).html();
+    return $(Mustache.render(template, context));
+  };
+
+  // Create a modal on the fly
+  $.modal = function(title, body) {
+    var body_html = $('<div>').append(body).html();
+    return $.render('modal', { title: title, body: body_html })
+      .appendTo($('body'))
+      .modal()
+      .on('hidden', function(){
+        $(this).remove();
+      });
+  };
+
 })(jQuery);
