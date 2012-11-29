@@ -1,6 +1,8 @@
 from app.decorators import json_response, staff_only
 from django.http import HttpResponseRedirect
+from django.core.exceptions import ObjectDoesNotExist
 from django.core.urlresolvers import reverse
+from django.http import Http404
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 from app.customer.forms import CreateForm
@@ -36,7 +38,10 @@ def create(request):
 @staff_only
 def read(request, id=-1):
   # Fetch from the database
-  customer = Customer.objects.get(student_id=id)
+  try:
+    customer = Customer.objects.get(student_id=id)
+  except ObjectDoesNotExist:
+    raise Http404
   return render_to_response('customer/read.html', {'customer': customer}, context_instance=RequestContext(request))
 
 # Update a customer
@@ -44,7 +49,10 @@ def read(request, id=-1):
 @json_response('POST')
 def update(request, id=-1):
   # Find related model -- will raise error if not found
-  customer = Customer.objects.get(student_id=id)
+  try:
+    customer = Customer.objects.get(student_id=id)
+  except ObjectDoesNotExist:
+    raise Http404
   if request.method == 'POST':
     form = CreateForm(request.POST, request.FILES, instance=customer)
     if form.is_valid():

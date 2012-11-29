@@ -1,11 +1,11 @@
+from django.core.exceptions import ObjectDoesNotExist
 from django.template import RequestContext
 from django.contrib.auth import authenticate, login
 from django.shortcuts import render_to_response
 from app.decorators import json_response, staff_only
 from app.item.forms import ItemCreate
 from app.item.models import Item
-from django.http import HttpResponseRedirect
-from django.http import HttpResponse
+from django.http import Http404
 from django.core.urlresolvers import reverse
 
 # Controller for items: recieves a request, interfaces with the database,
@@ -38,14 +38,20 @@ def create(request):
 @staff_only
 def read(request, id = -1):
   # Fetch from the database
-  item = Item.objects.get(pk=id)
+  try:
+    item = Item.objects.get(pk=id)
+  except ObjectDoesNotExist:
+    raise Http404
   return render_to_response('item/read.html', {'item': item}, context_instance=RequestContext(request))
 
 # Update a item -- stub; may not implement
 @staff_only
 @json_response('POST')
 def update(request, id = -1):
-  item = Item.objects.get(pk=id)
+  try:
+    item = Item.objects.get(pk=id)
+  except ObjectDoesNotExist:
+    raise Http404
   # POST flag discriminates submission from form request
   if request.method == 'POST':
     form = ItemCreate(request.POST, request.FILES, instance=item)

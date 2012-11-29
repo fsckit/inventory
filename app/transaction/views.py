@@ -1,7 +1,8 @@
 from random import randrange
 from django.shortcuts import render_to_response
 from django.template import RequestContext
-from django.http import HttpResponseRedirect
+from django.http import Http404
+from django.core.exceptions import ObjectDoesNotExist
 from django.core.urlresolvers import reverse
 from app.decorators import json_response, staff_only
 from app.transaction.forms import TransactionForm
@@ -46,7 +47,10 @@ def create(request):
 @staff_only
 def read(request, id = -1):
   # Fetch from the database
-  qs = Transaction.objects.get(pk=id)
+  try:
+    qs = Transaction.objects.get(pk=id)
+  except ObjectDoesNotExist:
+    raise Http404
   return render_to_response('transaction/read.html', {'o': qs}, context_instance=RequestContext(request))
 
 # Update a tranasction -- stub; may not implement

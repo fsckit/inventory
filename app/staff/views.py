@@ -20,7 +20,10 @@ from app.staff.forms import ActivationForm
 # List all staff
 @staff_only
 def read(request, id=-1):
-  user = User.objects.get(pk=id)
+  try:
+    user = User.objects.get(pk=id)
+  except ObjectDoesNotExist:
+    raise Http404
   return render_to_response('staff/read.html', {'user': user}, context_instance=RequestContext(request))
 
 # Create new staff
