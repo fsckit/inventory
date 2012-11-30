@@ -7,13 +7,15 @@
     <th>Customer</th>
     <th>Action</th>
     <th>Item</th>
+    <th>Signed off</th>
   </tr>
   {% for t in transactions %}
   <tr>
-    <td><a href="/transaction/{{t.id}}">{{t.date|time}}</a></td>
-    <td><a href="/customer/{{t.customer.id}}">{{t.customer}}</a></td>
+    <td><a href="/transaction/{{t.pk}}">{{t.date|timesince}} ago</a></td>
+    <td><a href="/customer/{{t.customer.pk}}">{{t.customer}}</a></td>
     <td>{{t.get_action_display}}</td>
-    <td><a href="/item/{{t.item.id}}">{{t.item}}</a></td>
+    <td><a href="/item/{{t.item.pk}}">{{t.item}}</a></td>
+    <td><a href="/staff/{{t.signoff.pk}}">{{t.signoff}}</a></td>
   </tr>
   {% endfor %}
 </table>
