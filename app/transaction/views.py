@@ -15,7 +15,7 @@ from app.item.models import Item
 # List all transactions
 @staff_only
 def index(request):
-  transactions = Transaction.objects.all()
+  transactions = Transaction.objects.select_related('customer', 'item').order_by('-date')
   return render_to_response('transaction/index.html', {'transactions': transactions}, context_instance=RequestContext(request))
 
 # Create new transaction

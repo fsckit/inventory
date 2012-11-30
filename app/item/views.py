@@ -16,7 +16,7 @@ from app.transaction.models import Transaction
 # List all items
 @staff_only
 def index(request):
-  items = Item.objects.all().order_by('name')
+  items = Item.objects.select_related('customer').order_by('name')
   return render_to_response('item/index.html', {'items': items}, context_instance=RequestContext(request))
 
 # List items that need to be returned
@@ -63,7 +63,7 @@ def create(request):
 def read(request, id = -1):
   # Fetch from the database
   try:
-    item = Item.objects.get(pk=id)
+    item = Item.objects.select_related('owner').get(pk=id)
   except ObjectDoesNotExist:
     raise Http404
   return render_to_response('item/read.html', {'item': item}, context_instance=RequestContext(request))

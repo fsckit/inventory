@@ -5,11 +5,13 @@
   <tr>
     <th>Item Description</th>
     <th>ID</th>
+    <th>Status</th>
   </tr>
   {% for i in items %}
   <tr>
     <td><a href="/item/{{i.pk}}">{{i.name}}</a></td>
     <td>{{i.label_id}}</td>
+    <td>{{i.latest_tran.get_action_display}}</td>
   </tr>
   {% endfor %}
 </table>

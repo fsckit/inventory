@@ -4,12 +4,16 @@
 <table class="index table table-striped table-condensed">
   <tr>
     <th>Time</th>
+    <th>Customer</th>
     <th>Action</th>
+    <th>Item</th>
   </tr>
   {% for t in transactions %}
   <tr>
     <td><a href="/transaction/{{t.id}}">{{t.date|time}}</a></td>
+    <td><a href="/customer/{{t.customer.id}}">{{t.customer}}</a></td>
     <td>{{t.get_action_display}}</td>
+    <td><a href="/item/{{t.item.id}}">{{t.item}}</a></td>
   </tr>
   {% endfor %}
 </table>
