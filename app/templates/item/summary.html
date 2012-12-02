@@ -27,7 +27,7 @@
 
 <div class="float">
   <legend>In inventory</legend>
-  {% if items.loaned|length == 0 %}
+  {% if items.stocked|length == 0 %}
     <p>No items remaining in inventory</p>
   {% else %}
     <table class="table table-striped table-condensed">
