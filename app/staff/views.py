@@ -13,6 +13,7 @@ from app.decorators import json_response, staff_only, superuser_only
 from app import utils
 from app.staff.forms import CreateForm, UpdateForm
 from app.staff.forms import ActivationForm
+from app.staff.models import Staff
 
 # Controller for staff: recieves a request, interfaces with the database,
 # and renders the template result for the view
@@ -21,7 +22,7 @@ from app.staff.forms import ActivationForm
 @staff_only
 def read(request, id=-1):
   try:
-    user = User.objects.get(pk=id)
+    user = Staff.objects.get(pk=id)
   except ObjectDoesNotExist:
     raise Http404
   return render_to_response('staff/read.html', {'user': user}, context_instance=RequestContext(request))
