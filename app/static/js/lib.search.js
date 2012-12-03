@@ -16,7 +16,12 @@
               if (limit.length > 0)
                 res = _.pick(res, limit);
 
-              results = _.flatten(_.values(res));
+              // Map type onto each result
+              results = _.flatten(_.map(res, function(v, k){
+                return _.map(v, function(i){
+                  return _.extend(i, {type: k.slice(0, -1)});
+                });
+              }));
               next(_.keys(results));
             });
         }, 200),
@@ -37,7 +42,7 @@
         },
         highlighter: function(item) {
           // The html returned here will be output in each cell in the chooser
-          return this.constructor.prototype.highlighter.call(this, results[item].name);
+          return $.render('search_result', results[item]);
         },
       });
 
