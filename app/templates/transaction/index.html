@@ -4,6 +4,7 @@
 <table class="index table table-striped table-condensed">
   <tr>
     <th>Time</th>
+    <th>ID</th>
     <th>Customer</th>
     <th>Action</th>
     <th>Item</th>
@@ -11,7 +12,8 @@
   </tr>
   {% for t in transactions %}
   <tr>
-    <td><a href="/transaction/{{t.pk}}">{{t.date|timesince}} ago</a></td>
+    <td>{{t.date|timesince}} ago</td>
+    <td><a href="/transaction/{{t.pk}}">{{t.id}}</a></td>
     <td><a href="/customer/{{t.customer.pk}}">{{t.customer}}</a></td>
     <td>{{t.get_action_display}}</td>
     <td><a href="/item/{{t.item.pk}}">{{t.item}}</a></td>
