@@ -71,4 +71,9 @@
       });
   };
 
+  // Evaluate tooltip and popout positioning
+  $.tip_direction = function(){
+    return this.$element.offset().left > $(window).width() * .75 ? 'left' : 'right';
+  };
+
 })(jQuery);

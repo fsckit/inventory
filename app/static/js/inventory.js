@@ -81,7 +81,7 @@
         e.stopPropagation();
         if (errors) {
           $err.tooltip({
-            placement: 'right',
+            placement: $.tip_direction,
             trigger: 'hover',
             title: errors.join('\n'),
           }).show();
@@ -115,6 +115,7 @@
             trigger: 'manual',
             title: $contents.find('legend').remove().text(),
             content: $contents.html(),
+            placement: $.tip_direction,
           }).popover('show');
 
           // Register one time close when you click outside of the popover; and
