@@ -27,7 +27,7 @@ def search(request):
       # Customer fullname LIKE [any qterm]
       cq_inc = Q(last_name__icontains=term) | Q(first_name__icontains=term) | Q(email__icontains=term) | Q(student_id__icontains=term)
       # Item {name, owner} LIKE [any qterm] OR label = [any qterm]
-      iq_inc = Q(name__icontains=term) | Q(label_id=term) | Q(owner__first_name__icontains=term) | Q(owner__last_name__icontains=term)
+      iq_inc = Q(name__icontains=term) | Q(label_id__icontains=term) | Q(owner__first_name__icontains=term) | Q(owner__last_name__icontains=term)
       if cq is None: # implies iq = None
         cq = cq_inc
         iq = iq_inc

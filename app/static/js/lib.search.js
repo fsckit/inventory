@@ -29,11 +29,31 @@
         matcher: function(item) {
           // Reset internal value
           $this.data('value', null);
-          return this.constructor.prototype.matcher.call(this, results[item].name);
+          for (var key in results[item])
+            if (results[item][key].toString().toLowerCase().indexOf(this.query.toLowerCase()) >= 0)
+              return true;
+          return false;
         },
         sorter: function(items) {
-          // This is a idempotent sorter right now, TODO
-          return items;
+          // Prioritize name, and prioritize begins-with
+          var query = this.query.toLowerCase(),
+              sorters = [ [], [], [], [] ];
+
+          // Sorter index is calculated through boolean logic
+          // 2 bit (00, 01, 10, 11)
+          // least significant bit is key != name
+          // most significant bit is contains > 0
+          while (item = items.shift()) {
+            // Start out out-of-index
+            var index = sorters.length;
+            for (var key in results[item]) {
+              var contains = results[item][key].toString().toLowerCase().indexOf(query);
+              if (contains >= 0)
+                index = Math.min(index, (key != 'name') + ((contains > 0) << 1));
+            }
+            sorters[index].push(item);
+          }
+          return [].concat.apply([], sorters);
         },
         updater: function(item) {
           // Set internal value
