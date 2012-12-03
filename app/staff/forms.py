@@ -1,5 +1,6 @@
 from django import forms
 from django.contrib.auth.models import User
+from django.contrib.auth.forms import AuthenticationForm
 
 # Form for creating a new staff from a superuser staff
 class CreateForm(forms.ModelForm):
@@ -28,3 +29,6 @@ class UpdateForm(forms.ModelForm):
   class Meta:
     model = User
     fields = ('first_name', 'last_name', 'email')
+
+class LoginForm(AuthenticationForm):
+  username = forms.CharField(label="Email")

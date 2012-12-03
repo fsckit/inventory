@@ -1,4 +1,5 @@
 from django.conf.urls.defaults import *
+from app.staff.forms import LoginForm
 
 # Routes for the different operations on a single staff; links a URI to a
 # controller
@@ -15,7 +16,7 @@ urlpatterns = patterns('app.staff.views',
 
 # Routes provided by Django for basic user functions
 urlpatterns += patterns('django.contrib.auth.views',
-  url(r'login/$', 'login', name='login'),
+  url(r'login/$', 'login', {'authentication_form': LoginForm}, name='login'),
   url(r'logout/$', 'logout', {'next_page': '/'}, name='logout'),
   url(r'password/reset/$', 'password_reset', name='pw_reset'),
   url(r'password/reset/done/$', 'password_reset_done', name='pw_reset_done'),
