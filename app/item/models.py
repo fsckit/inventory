@@ -16,7 +16,7 @@ class Item(models.Model):
   )
 
   # Id given to the physical item
-  label_id = models.CharField(max_length = 20)
+  label_id = models.CharField(max_length = 20, unique = True)
   # Brief description of the item
   name     = models.CharField(max_length = 100)
   # Person who lent the item to Genericon
