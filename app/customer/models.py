@@ -2,7 +2,7 @@ from django.db import models
 
 class Customer(models.Model):
   # RIN for student lending or borrowing
-  student_id   = models.IntegerField(primary_key=True)
+  student_id   = models.IntegerField(unique=True)
   # Student's name split for better search functionality
   first_name   = models.CharField(max_length = 50)
   last_name    = models.CharField(max_length = 50)

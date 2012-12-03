@@ -9,7 +9,7 @@
   </tr>
   {% for c in customer %}
   <tr>
-    <td><a href="/customer/{{c.student_id}}">{{c.full_name}}</a></td>
+    <td><a href="/customer/{{c.pk}}">{{c.full_name}}</a></td>
     <td>{{c.student_id}}</td>
   </tr>
   {% endfor %}

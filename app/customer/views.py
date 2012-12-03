@@ -39,7 +39,7 @@ def create(request):
 def read(request, id=-1):
   # Fetch from the database
   try:
-    customer = Customer.objects.get(student_id=id)
+    customer = Customer.objects.get(pk=id)
   except ObjectDoesNotExist:
     raise Http404
   return render_to_response('customer/read.html', {'customer': customer}, context_instance=RequestContext(request))
@@ -50,7 +50,7 @@ def read(request, id=-1):
 def update(request, id=-1):
   # Find related model -- will raise error if not found
   try:
-    customer = Customer.objects.get(student_id=id)
+    customer = Customer.objects.get(pk=id)
   except ObjectDoesNotExist:
     raise Http404
   if request.method == 'POST':
