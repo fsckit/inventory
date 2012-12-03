@@ -50,6 +50,10 @@
   cursor: pointer;
 }
 
+.popover {
+  width: auto;
+}
+
 .popover dl.dl-horizontal {
   margin: 0;
 }
