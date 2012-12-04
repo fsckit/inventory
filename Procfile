@@ -1,1 +1,1 @@
-web: gunicorn scripts.wsgi
+web: gunicorn scripts.wsgi -k gevent
