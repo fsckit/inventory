@@ -4,6 +4,14 @@ from django.contrib.auth.forms import AuthenticationForm
 
 # Form for creating a new staff from a superuser staff
 class CreateForm(forms.ModelForm):
+  def clean_email(self):
+    # Make sure this is unique -- email is not a unique attribute of a Django
+    # user, but username is, and we use them interchangeably
+    data = self.cleaned_data['email']
+    if User.objects.filter(email=data).count() > 0:
+      raise forms.ValidationError("A user with this email already exists")
+    return data
+
   class Meta:
     model = User
     fields = ('first_name', 'last_name', 'email', 'is_superuser',)

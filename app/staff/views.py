@@ -64,7 +64,7 @@ def create(request):
   else:
     # Just show the form to the user
     form = CreateForm()
-    return render_to_response('staff/create.html', {'form': form}, context_instance=RequestContext(request))
+  return render_to_response('staff/create.html', {'form': form}, context_instance=RequestContext(request))
 
 # Changes for activation
 def activation(request, activation_key=None):
