@@ -31,6 +31,10 @@
   margin-bottom: 0;
 }
 
+#stage .index-scroll {
+  overflow-y: auto;
+}
+
 
 
 .tabbable > legend {

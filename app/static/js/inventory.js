@@ -139,14 +139,20 @@
     $(document).on('click', '.popover', function(e){
       e.stopPropagation();
     });
-  });
 
-  // Summaries
-  $('#item-summary').on('click', function(e){
-    e.preventDefault();
-    // Load into temporary div
-    $('<div>').load(e.target.href, function(){
-      $.modal('Item Summary', this);
-    }).remove();
+    // Summaries
+    $('#item-summary').on('click', function(e){
+      e.preventDefault();
+      // Load into temporary div
+      $('<div>').load(e.target.href, function(){
+        $.modal('Item Summary', this);
+      }).remove();
+    });
+
+    // Resize window
+    $(window).on('resize', function(){
+      var height = $(this).height();
+      $("#stage .index-scroll").css('max-height', (height - 200) / 2);
+    });
   });
 })(jQuery);
