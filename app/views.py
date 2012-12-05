@@ -2,6 +2,7 @@ from socketio import socketio_manage
 from django.contrib.auth.views import login
 from django.shortcuts import render_to_response
 from django.template import RequestContext
+from django.http import HttpResponse
 from app.decorators import staff_only
 from app.item.forms import ItemCreate
 from app.customer.forms import CreateForm
@@ -28,3 +29,4 @@ def subscribe(request):
   if 'socketio' not in request.environ:
     raise Exception('Socket.io functionality not available on server')
   socketio_manage(request.environ, {'/subscribe': SubscribeNamespace}, request)
+  return HttpResponse('')
