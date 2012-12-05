@@ -7,7 +7,6 @@ DEBUG = False
 TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
-    ('Doug', 'douglas.patti@gmail.com'),
     # Add name/email here to be notified of production errors
 )
 MANAGERS = ADMINS
