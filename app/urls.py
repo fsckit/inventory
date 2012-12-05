@@ -15,6 +15,8 @@ urlpatterns = patterns('',
   (r'^item/',        include('app.item.urls')),
   (r'^transaction/', include('app.transaction.urls')),
   (r'^search/',      include('app.search.urls')),
+  # Route for history updates
+  (r'^socket\.io/', 'app.views.subscribe'),
 
   # Uncomment the next line to enable the admin:
   (r'^admin/',       include(admin.site.urls)),

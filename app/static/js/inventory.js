@@ -1,4 +1,10 @@
 (function($){
+  // Subscribe via socket.io
+  var socket = io.connect('/subscribe', {transports: ['xhr-polling']});
+  socket.on('update', function(data){
+    $('#transaction-history').load('/transaction/index');
+  });
+
   // Events
   $(function(){
     // View tabs trigger load events
@@ -48,6 +54,8 @@
           // Also reload the transaction list -- this could use some cleaning up
           // in the future.
           $('#transaction-history').load('/transaction/index');
+          // Force everyone else's update
+          socket.emit('transaction');
         } else if (result.errors) {
           // Display errors inline
           for (var field in result.errors) {

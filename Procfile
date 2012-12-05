@@ -1,1 +1,1 @@
-web: gunicorn scripts.wsgi -k gevent
+web: gunicorn -k gevent -k socketio.sgunicorn.GeventSocketIOWorker scripts.wsgi
