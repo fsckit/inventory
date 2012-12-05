@@ -1,6 +1,8 @@
 <form class="form-horizontal" action="{% url item_create %}" method="post"> {% csrf_token %}
+  <fieldset>
   {% include "_form.html" %}
-  <div class="form-actions-inline">
+  </fieldset>
+  <div class="form-actions">
     <input class="btn btn-primary" type="submit" value="Create" />
   </div>
 </form>

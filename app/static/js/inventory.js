@@ -70,21 +70,32 @@
       });
     });
 
-    // Error handler on form
-    $('form').on('errors', function(e, errors) {
-      // Temporarily dump in error handler
-      if (errors)
-        errors.forEach($.error);
+    $('form[action]').each(function(){
+      var $this = $(this);
+
+      // Create error display
+      var $err = $('<div>', {class: 'alert alert-error'}).prependTo($this.find('fieldset')).hide();
+
+      // Error handler on form
+      $this.on('errors', function(e, errors) {
+        // Temporarily dump in error handler
+        if (errors) {
+          $err.text(errors[0]).show();
+        } else {
+          $err.text('').hide();
+        }
+      });
     });
 
     // Error handlers on fields
-    $('form :input').each(function(){
+    $('form fieldset :input').each(function(){
       var $this = $(this);
 
       // Create error display
       var $err = $('<div>', {class: 'error'}).insertAfter($this).hide();
 
       // Bind event listener
+      var $group = $this.closest('.control-group');
       $this.on('errors', function(e, errors) {
         e.stopPropagation();
         if (errors) {
@@ -93,8 +104,10 @@
             trigger: 'hover',
             title: errors.join('\n'),
           }).show();
+          $group.addClass('error');
         } else {
           $err.hide();
+          $group.removeClass('error');
         }
       });
     });

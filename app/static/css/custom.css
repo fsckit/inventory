@@ -23,19 +23,33 @@
 
 #stage form {
   position: relative;
-  border-bottom: 1px solid #DDD;
   padding-bottom: 10px;
+}
+
+#stage form .alert-error {
+  text-align: center;
+}
+
+#stage form fieldset {
+  height: 175px;
 }
 
 #stage form .control-group {
   margin-bottom: 0;
 }
 
+#stage form .form-actions {
+  padding: 10px 20px 10px 180px;
+  margin-top: 10px;
+}
+
+#stage form .form-actions .error {
+  margin-top: 5px;
+}
+
 #stage .index-scroll {
   overflow-y: auto;
 }
-
-
 
 .tabbable > legend {
   float: left;
