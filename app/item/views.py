@@ -9,6 +9,7 @@ from app.decorators import json_response, staff_only
 from app.item.forms import ItemCreate
 from app.item.models import Item
 from app.transaction.models import Transaction
+from random import randrange
 
 # Controller for items: recieves a request, interfaces with the database,
 # and renders the template result for the view
@@ -50,6 +51,10 @@ def create(request):
     form = ItemCreate(request.POST, request.FILES)
     if form.is_valid():
       form.save()
+      transaction = Transaction(id=int(''.join(str(randrange(10)) for i in range(9))),
+                                action=u'l', customer=form.cleaned_data['owner'],
+                                item=form.instance, signoff=request.user)
+      transaction.save()
       return { 'success': True, 'message': "Item '%s' created" % form.instance.name }
     # Form was invalid
     return { 'success': False, 'errors': form.errors }
