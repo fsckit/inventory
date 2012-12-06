@@ -166,6 +166,6 @@
     $(window).on('resize', function(){
       var height = $(this).height();
       $("#stage .index-scroll").css('max-height', (height - 200) / 2);
-    });
+    }).trigger('resize');
   });
 })(jQuery);
