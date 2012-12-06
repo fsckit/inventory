@@ -1,3 +1,4 @@
+from smtplib import SMTPAuthenticationError
 from django.conf import settings
 from django.core import mail
 from django.core.mail import EmailMultiAlternatives
@@ -5,9 +6,13 @@ from django.template.loader import render_to_string
 from django.utils.html import strip_tags
 
 def mailer(to, subject, template, context):
-  # Load settings
-  connection = mail.get_connection(settings.EMAIL_BACKEND)
-  connection.open()
+  try:
+    # Load settings
+    connection = mail.get_connection(settings.EMAIL_BACKEND)
+    connection.open()
+  except SMTPAuthenticationError:
+    # If we are over token use, this exception will be raised; we can stop
+    return
 
   # Generate template
   html_message = render_to_string(template, context)
