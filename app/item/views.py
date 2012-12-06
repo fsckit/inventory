@@ -55,6 +55,7 @@ def create(request):
                                 action=u'l', customer=form.cleaned_data['owner'],
                                 item=form.instance, signoff=request.user)
       transaction.save()
+      transaction.send_email()
       return { 'success': True, 'message': "Item '%s' created" % form.instance.name }
     # Form was invalid
     return { 'success': False, 'errors': form.errors }
