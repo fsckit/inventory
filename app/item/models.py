@@ -9,9 +9,9 @@ class Item(models.Model):
   # than an integer.
   TYPES = (
     (u'g', u'Game'),
-    (u'c', u'Console'),
+    (u'c', u'System'),
     (u'n', u'Controller'),
-    (u'p', u'Peripheral'),
+    (u'p', u'Television'),
     (u'o', u'Other'),
   )
 

@@ -1,8 +1,43 @@
 <form class="form-horizontal" action="{% url item_create %}" method="post"> {% csrf_token %}
+  <script type="text/javascript">
+    function funUpdate(){
+      var element = document.getElementById("id_label_id");
+      element.value = element.value.toUpperCase();
+      var type = document.getElementById("id_type");
+      switch(element.value.charAt(0))
+      {
+        case 'G': //game
+          type.options[1].selected = true;
+          break;
+        case 'S': //system
+          type.options[2].selected = true;
+          break;
+        case 'C': //controller
+          type.options[3].selected = true;
+          break;
+        case 'T': //television
+          type.options[4].selected = true;
+          break;
+        case 'X': //other
+          type.options[5].selected = true;
+          break;
+        default:
+          type.options[0].selected = true;
+          alert("Invalid ID character: " + element.value.charAt(0));
+        }
+    }
+  </script>
   <fieldset>
   {% include "_form.html" %}
   </fieldset>
   <div class="form-actions">
     <input class="btn btn-primary" type="submit" value="Create" />
   </div>
+  <script type="text/javascript">
+    var element = document.getElementById("id_label_id");
+    if(element.addEventListener)
+      element.addEventListener("change", funUpdate, false);
+    else
+      element.addEvent("onchange", funUpdate);
+  </script>
 </form>

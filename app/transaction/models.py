@@ -10,10 +10,10 @@ class Transaction(models.Model):
   # because it helps for database readability and does not take up more space
   # than an integer.
   ACTIONS = (
-    (u'b',	u'Borrow'), # Lend from the con to customer
-    (u'l',	u'Lend'),   # Lend from item.owner to the con
-    (u'r',	u'Return'), # Return from customer to the con
-    (u'c',	u'Claim'),  # Return from the con to item.owner
+    (u'b',	u'In Stock'), # Lend from the con to customer
+    (u'l',	u'Out of Room'),   # Lend from item.owner to the con
+    (u'r',	u'Returned to Room'), # Return from customer to the con
+    (u'c',	u'Claimed by Owner'),  # Return from the con to item.owner
   )
 
 
@@ -28,18 +28,18 @@ class Transaction(models.Model):
   item      = models.ForeignKey(Item, on_delete=models.PROTECT)
   signoff   = models.ForeignKey(User, on_delete=models.PROTECT)
 
-  def send_email(self):
-    CHOICES = {'b': 'borrow.html', 'l': 'lend.html', 'r': 'return.html', 'c': 'claim.html'}
-    template = os.path.join('email', CHOICES[self.action])
-
-    # Generate email
-    utils.mailer(
-      to = self.customer.email,
-      subject = 'Genericon Transaction Completed',
-      template = template,
-      context = {
-        'customer': self.customer,
-        'item': self.item,
-        'id': self.id,
-      }
-    )
+  def send_email(self):pass
+#    CHOICES = {'b': 'borrow.html', 'l': 'lend.html', 'r': 'return.html', 'c': 'claim.html'}
+#    template = os.path.join('email', CHOICES[self.action])
+#
+#    # Generate email
+#    utils.mailer(
+#      to = self.customer.email,
+#      subject = 'Genericon Transaction Completed',
+#      template = template,
+#      context = {
+#        'customer': self.customer,
+#        'item': self.item,
+#        'id': self.id,
+#      }
+#    )
