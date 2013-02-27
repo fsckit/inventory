@@ -161,6 +161,13 @@
         $.modal('Item Summary', this);
       }).remove();
     });
+    $('#customer-summary').on('click', function(e){
+      e.preventDefault();
+      // Load into temporary div
+      $('<div>').load(e.target.href, function(){
+        $.modal('Customer Summary', this);
+      }).remove();
+    });
 
     // Resize window
     $(window).on('resize', function(){

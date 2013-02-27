@@ -58,6 +58,7 @@
         updater: function(item) {
           // Set internal value
           $this.data('value', results[item].key);
+          $this.trigger('errors'); // Clear
           return results[item].name;
         },
         highlighter: function(item) {
@@ -67,9 +68,11 @@
       });
 
       $this.on('blur', function(e){
-        // If we don't have an internal value set, we need to find it based on
-        // our value
-        // TODO
+        setTimeout(function(){
+          // If we don't have an internal value set, we need to warn user
+          if ($this.val() && !$this.data('value'))
+            $this.trigger('errors', [["You must select an option from the search drop-down"]]);
+        }, 500);
       });
     });
   };

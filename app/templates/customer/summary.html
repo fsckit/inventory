@@ -1,0 +1,27 @@
+{% extends "fragment.html" %}
+
+{% block content %}
+<div class="float">
+  <legend>Customers with items</legend>
+  {% if customers|length == 0 %}
+    <p>No customers with items</p>
+  {% else %}
+    <table class="table table-striped table-condensed">
+      <tr>
+        <th>Item</th>
+        <th>Owned by</th>
+        <th>Loaned to</th>
+        <th>Date</th>
+      </tr>
+      {% for item, transaction in customers %}
+      <tr>
+        <td><a class="popover-show" href="/item/{{item.pk}}">{{item.name}}</a></td>
+        <td><a class="popover-show" href="/customer/{{item.owner.pk}}">{{item.owner.full_name}}</a></td>
+        <td><a class="popover-show" href="/customer/{{transaction.customer.pk}}">{{transaction.customer}}</a></td>
+        <td>{{transaction.date}}</td>
+      </tr>
+      {% endfor %}
+    </table>
+  {% endif %}
+</div>
+{% endblock %}

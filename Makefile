@@ -19,7 +19,7 @@ freeze: venv
 	${VENV} pip freeze -r requirements.txt > requirements.txt
 
 serve: venv
-	${VENV} python ${MANAGE} runserver
+	${VENV} python ${MANAGE} runserver 0.0.0.0:8000
 
 test: venv
 	${VENV} python ${MANAGE} test

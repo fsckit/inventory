@@ -1,4 +1,5 @@
 from app.decorators import json_response, staff_only
+from django.db.models import Max, F
 from django.http import HttpResponseRedirect
 from django.core.exceptions import ObjectDoesNotExist
 from django.core.urlresolvers import reverse
@@ -7,6 +8,7 @@ from django.shortcuts import render_to_response
 from django.template import RequestContext
 from app.customer.forms import CreateForm
 from app.customer.models import Customer
+from app.transaction.models import Transaction
 
 # Controller for customer: recieves a request, interfaces with the database,
 # and renders the template result for the view
@@ -16,6 +18,21 @@ from app.customer.models import Customer
 def index(request):
   customer = Customer.objects.all().order_by('last_name')
   return render_to_response('customer/index.html', {'customer': customer}, context_instance=RequestContext(request))
+
+# List customers that need to return an item
+def summary(request):
+  # Limit transactions to only those that were the latest for their given item,
+  # then join and return
+  latest_transactions = Transaction.objects \
+    .annotate(latest=Max('item__transaction__date')) \
+    .filter(latest=F('date')) \
+    .select_related('item') \
+    .select_related('customer') \
+    .filter(action='b') # Only care about borrowed items
+
+  customers = [(t.item, t) for t in latest_transactions]
+
+  return render_to_response('customer/summary.html', {'customers': customers}, context_instance=RequestContext(request))
 
 # Create new customer
 @staff_only
