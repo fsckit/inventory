@@ -31,7 +31,7 @@ MEDIA_ROOT = ''
 # Don't put anything in this directory yourself; store your static files
 # in apps' "static/" subdirectories and in STATICFILES_DIRS.
 # Example: "/home/media/media.lawrence.com/static/"
-STATIC_ROOT = 'app/static'
+STATIC_ROOT = 'staticfiles'
 
 TEMPLATE_DIRS = (
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
@@ -47,6 +47,9 @@ STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
 #    'django.contrib.staticfiles.finders.DefaultStorageFinder',
 )
+
+# Location of actual static files for application
+STATICFILES_DIRS = ('app/static',)
 
 # List of callables that know how to import templates from various sources.
 TEMPLATE_LOADERS = (
@@ -89,7 +92,7 @@ INSTALLED_APPS = (
     'app.staff',
     'app.transaction',
     'app.search', 
-    # 'django.contrib.staticfiles',
+    'django.contrib.staticfiles',
     # 'django.contrib.admindocs',
 )
 

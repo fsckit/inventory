@@ -1,1 +1,1 @@
-web: gunicorn -k gevent -k socketio.sgunicorn.GeventSocketIOWorker scripts.wsgi
+web: python myapp/manage.py collectstatic --noinput; gunicorn -k gevent -k socketio.sgunicorn.GeventSocketIOWorker scripts.wsgi
