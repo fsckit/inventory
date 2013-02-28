@@ -33,7 +33,6 @@ def create(request):
       # Email receipt
       form.instance.id = int(''.join(str(randrange(10)) for i in range(9)))
       instance = form.save()
-      instance.send_email()
 
       return { 'success': True, 'message': "Transaction #%d added" % instance.id }
     # Form was invalid

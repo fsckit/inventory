@@ -71,6 +71,10 @@
   cursor: pointer;
 }
 
+.controls #id_label_id {
+  text-transform: uppercase;
+}
+
 .popover {
   width: auto;
 }

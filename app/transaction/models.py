@@ -27,7 +27,6 @@ class Transaction(models.Model):
   item      = models.ForeignKey(Item, on_delete=models.PROTECT)
   signoff   = models.ForeignKey(User, on_delete=models.PROTECT)
 
-
   def get_status(self):
     # return status of Out or In Stock or Claimed
     strings = {'b': "Out",
