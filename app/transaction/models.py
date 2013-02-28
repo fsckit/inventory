@@ -10,10 +10,10 @@ class Transaction(models.Model):
   # because it helps for database readability and does not take up more space
   # than an integer.
   ACTIONS = (
-    (u'b',	u'Borrow'), # Lend from the con to customer
-    (u'l',	u'Lend'),   # Lend from item.owner to the con
-    (u'r',	u'Return'), # Return from customer to the con
-    (u'c',	u'Claim'),  # Return from the con to item.owner
+    (u'b',	u'is borrowing'), # Lend from the con to customer
+    (u'l',	u'is lending'),   # Lend from item.owner to the con
+    (u'r',	u'is returning'), # Return from customer to the con
+    (u'c',	u'is claiming'),  # Return from the con to item.owner
   )
 
   id        = models.IntegerField(primary_key=True)
