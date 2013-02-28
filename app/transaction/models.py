@@ -27,20 +27,3 @@ class Transaction(models.Model):
   customer  = models.ForeignKey(Customer, on_delete=models.PROTECT)
   item      = models.ForeignKey(Item, on_delete=models.PROTECT)
   signoff   = models.ForeignKey(User, on_delete=models.PROTECT)
-
-  def send_email(self):pass
-#    CHOICES = {'b': 'borrow.html', 'l': 'lend.html', 'r': 'return.html', 'c': 'claim.html'}
-#    template = os.path.join('email', CHOICES[self.action])
-#
-#    # Generate email
-#    utils.mailer(
-#      to = self.customer.email,
-#      subject = 'Genericon Transaction Completed',
-#      template = template,
-#      context = {
-#        'customer': self.customer,
-#        'item': self.item,
-#        'id': self.id,
-#      }
-#    )
-
