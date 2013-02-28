@@ -78,7 +78,7 @@ class TransactionForm(forms.ModelForm):
     model = Transaction
     # We omit the signoff field because that is added based on the user that
     # initiated the transaction
-    fields = ['action', 'customer', 'item']
+    fields = ['customer', 'action', 'item']
     # We also force the foreign keys to appear as searchable text widgets
     widgets = {
         'customer': forms.widgets.TextInput(attrs={'autocomplete':'off', 'class':'search customers'}),
