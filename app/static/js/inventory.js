@@ -99,6 +99,7 @@
       $this.on('errors', function(e, errors) {
         e.stopPropagation();
         if (errors) {
+          $err.tooltip('destroy');
           $err.tooltip({
             placement: $.tip_direction,
             trigger: 'hover',
@@ -174,5 +175,16 @@
       var height = $(this).height();
       $("#stage .index-scroll").css('max-height', (height - 200) / 2);
     }).trigger('resize');
+
+    // Auto select for physical id
+    $('#id_label_id').keyup(function(){
+      var type = $(this).val().charAt(0).toLowerCase();
+
+      var $select = $('#id_type').val(type);
+      if (!$select.val() && type)
+        $(this).trigger('errors', [["Invalid id letter: '" + type.toUpperCase() + "'"]]);
+      else
+        $(this).trigger('errors', null);
+    });
   });
 })(jQuery);

@@ -9,10 +9,10 @@ class Item(models.Model):
   # than an integer.
   TYPES = (
     (u'g', u'Game'),
-    (u'c', u'System'),
-    (u'n', u'Controller'),
-    (u'p', u'Television'),
-    (u'o', u'Other'),
+    (u's', u'System'),
+    (u'c', u'Controller'),
+    (u't', u'Television'),
+    (u'x', u'Other'),
   )
 
   # Id given to the physical item
