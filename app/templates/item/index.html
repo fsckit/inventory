@@ -11,7 +11,7 @@
   <tr>
     <td><a href="/item/{{i.pk}}">{{i.name}}</a></td>
     <td>{{i.label_id}}</td>
-    <td>{{i.latest_tran.get_action_display}}</td>
+    <td>{{i.latest_tran.get_status}}{{i.latest_tran.get_customer_formatted}}</td>
   </tr>
   {% endfor %}
 </table>

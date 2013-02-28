@@ -37,3 +37,4 @@ class Item(models.Model):
       return Transaction.objects.get(item=self, date=last_tran_dt)
     except ObjectDoesNotExist:
       return None
+

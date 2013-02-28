@@ -10,12 +10,11 @@ class Transaction(models.Model):
   # because it helps for database readability and does not take up more space
   # than an integer.
   ACTIONS = (
-    (u'b',	u'In Stock'), # Lend from the con to customer
-    (u'l',	u'Out of Room'),   # Lend from item.owner to the con
-    (u'r',	u'Returned to Room'), # Return from customer to the con
-    (u'c',	u'Claimed by Owner'),  # Return from the con to item.owner
+    (u'b',	u'Borrow'), # Lend from the con to customer
+    (u'l',	u'Lend'),   # Lend from item.owner to the con
+    (u'r',	u'Return'), # Return from customer to the con
+    (u'c',	u'Claim'),  # Return from the con to item.owner
   )
-
 
   id        = models.IntegerField(primary_key=True)
   # Date of transaction, handled automatically
@@ -27,6 +26,20 @@ class Transaction(models.Model):
   customer  = models.ForeignKey(Customer, on_delete=models.PROTECT)
   item      = models.ForeignKey(Item, on_delete=models.PROTECT)
   signoff   = models.ForeignKey(User, on_delete=models.PROTECT)
+
+
+  def get_status(self):
+    # return status of Out or In Stock or Claimed
+    strings = {'b': "Out",
+               'l': "In Stock",
+               'r': "In Stock",
+               'c': "Claimed by Owner"}
+    return strings[self.action]
+
+  def get_customer_formatted(self):
+    if self.action == u'b' or self.action == 'b':
+      return ' (' + str(self.customer) + ')'
+    return ''
 
   def send_email(self):pass
 #    CHOICES = {'b': 'borrow.html', 'l': 'lend.html', 'r': 'return.html', 'c': 'claim.html'}
