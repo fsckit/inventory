@@ -1,12 +1,15 @@
 {% extends "fragment.html" %}
 
 {% block content %}
-<table class="index table table-striped table-condensed">
+<table class="index table table-striped table-condensed sortable">
+  <thead>
   <tr>
     <th>Item Description</th>
     <th>ID</th>
     <th>Status</th>
   </tr>
+  </thead>
+  <tbody>
   {% for i in items %}
   <tr>
     <td><a href="/item/{{i.pk}}">{{i.name}}</a></td>
@@ -14,5 +17,6 @@
     <td>{{i.latest_tran.get_status}}{{i.latest_tran.get_customer_formatted}}</td>
   </tr>
   {% endfor %}
+  </tbody>
 </table>
 {% endblock %}

@@ -139,3 +139,8 @@
 .result .id:hover {
   color: #CCC;
 }
+
+table.sortable th:hover {
+  cursor: pointer;
+  background-color: #ccc;
+}
