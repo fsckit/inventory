@@ -28,6 +28,11 @@ SECRET_KEY = '4ktv5%y20q)-6law0pfuu14ukke9un-5f4c(5waqkac3j5x9wt'
 # Python dotted path to the WSGI application used by Django's runserver.
 WSGI_APPLICATION = 'scripts.wsgi.application'
 
+# Debug toolbar
+MIDDLEWARE_CLASSES += ('debug_toolbar.middleware.DebugToolbarMiddleware',)
+INTERNAL_IPS = ('127.0.0.1',)
+INSTALLED_APPS += ('debug_toolbar',)
+
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to
 # the site admins on every HTTP 500 error when DEBUG=False.
