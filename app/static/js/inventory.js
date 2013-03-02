@@ -10,7 +10,7 @@
     // View tabs trigger load events
     ['customer', 'item'].forEach(function(type){
       $('#stage').on('show', '#' + type + ' .view', function(e) {
-        $(e.target.hash).load('/' + type + '/index', function(){
+        $(e.target.hash).text('Refreshing...').load('/' + type + '/index', function(){
           $(this).find('table.sortable').tablesorter();
         });
       });
