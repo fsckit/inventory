@@ -2,7 +2,7 @@
   // Subscribe via socket.io
   var socket = io.connect('/subscribe', {transports: ['xhr-polling']});
   socket.on('update', function(data){
-    $('#transaction-history').load('/transaction/index');
+    $('#transaction-history').trigger('update');
   });
 
   // Events
@@ -17,7 +17,16 @@
     });
 
     // Load initial history
-    $('#transaction-history').load('/transaction/index');
+    $('#transaction-history').on('update', function(){
+      $(this).load('/transaction/index');
+    }).trigger('update');
+
+    // History timer
+    setInterval(function(){
+      $('#transaction-history td.time').each(function(){
+        $(this).text(new Date($(this).data('time') * 1000).time_since());
+      });
+    }, 1000);
 
     // Set up search/autocomplete fields
     $(':input.search').search();
@@ -55,7 +64,7 @@
           $('#transaction :input:first').focus();
           // Also reload the transaction list -- this could use some cleaning up
           // in the future.
-          $('#transaction-history').load('/transaction/index');
+          $('#transaction-history').trigger('update');
           // Force everyone else's update
           socket.emit('transaction');
         } else if (result.errors) {

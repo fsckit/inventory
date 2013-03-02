@@ -12,7 +12,7 @@
   </tr>
   {% for t in transactions %}
   <tr>
-    <td>{{t.date|timesince}} ago</td>
+    <td class='time' data-time="{{t.date|date:"U"}}">{{t.date|timesince}} ago</td>
     <td><a href="/transaction/{{t.pk}}">{{t.id}}</a></td>
     <td><a href="/customer/{{t.customer.pk}}">{{t.customer}}</a></td>
     <td>{{t.get_action_display}}</td>
